@@ -1,9 +1,12 @@
 package org.rabbit.entity.order;
 
 import java.util.Date;
+import java.util.List;
 
 import org.rabbit.common.enums.OrderStatus;
 import org.rabbit.entity.base.BaseEntity;
+
+import com.google.common.collect.Lists;
 
 public class OrderHeader extends BaseEntity{
 
@@ -16,6 +19,16 @@ public class OrderHeader extends BaseEntity{
 	private Date cancelDate;
 	
 	private OrderStatus status;
+	
+	private List<OrderLine> orderLines = Lists.newArrayList();
+	
+	public List<OrderLine> getOrderLines() {
+		return orderLines;
+	}
+
+	public void setOrderLines(List<OrderLine> orderLines) {
+		this.orderLines = orderLines;
+	}
 
 	public String getOrderNumber() {
 		return orderNumber;

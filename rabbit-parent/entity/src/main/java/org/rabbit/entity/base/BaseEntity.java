@@ -7,7 +7,9 @@ import java.util.Date;
  * 
  */
 public class BaseEntity {
-
+	
+	private Integer id;
+	
 	private String remarks;
 	
 	private Integer delFlag;
@@ -19,6 +21,14 @@ public class BaseEntity {
 	private String updateBy;
 	
 	private Date updateDate;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getRemarks() {
 		return remarks;
