@@ -1,6 +1,8 @@
 package org.rabbit.common.enums;
 
-public enum PayWay {
+import com.baomidou.mybatisplus.core.enums.IEnum;
+
+public enum PayWay implements IEnum<Integer> {
 
 	ALIPAY(0, "支付宝", "支付宝"), WECHAT(1, "微信", "微信"), ONLINE(2, "在线", "在线");
 
@@ -10,6 +12,7 @@ public enum PayWay {
 
 	private String desc;
 
+	@Override
 	public Integer getValue() {
 		return value;
 	}

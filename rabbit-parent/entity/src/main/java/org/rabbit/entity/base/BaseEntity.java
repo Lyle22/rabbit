@@ -2,80 +2,40 @@ package org.rabbit.entity.base;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
 /**
  * 基础类
  * 
  */
+@Data
+@Accessors(chain = true)
 public class BaseEntity {
 	
+	@TableId
 	private Integer id;
 	
 	private String remarks;
 	
+	@TableField("del_flag")
+	@TableLogic
 	private Integer delFlag;
-	
+
+	@TableField("create_date")
 	private Date createDate;
 	
+	@TableField("create_by")
 	private String createBy;
 	
+	@TableField("update_by")
 	private String updateBy;
 	
+	@TableField("update_date")
 	private Date updateDate;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-
-	public Integer getDelFlag() {
-		return delFlag;
-	}
-
-	public void setDelFlag(Integer delFlag) {
-		this.delFlag = delFlag;
-	}
-
-	public Date getCreateDate() {
-		return createDate;
-	}
-
-	public void setCreateDate(Date createDate) {
-		this.createDate = createDate;
-	}
-
-	public String getCreateBy() {
-		return createBy;
-	}
-
-	public void setCreateBy(String createBy) {
-		this.createBy = createBy;
-	}
-
-	public String getUpdateBy() {
-		return updateBy;
-	}
-
-	public void setUpdateBy(String updateBy) {
-		this.updateBy = updateBy;
-	}
-
-	public Date getUpdateDate() {
-		return updateDate;
-	}
-
-	public void setUpdateDate(Date updateDate) {
-		this.updateDate = updateDate;
-	}
 
 }

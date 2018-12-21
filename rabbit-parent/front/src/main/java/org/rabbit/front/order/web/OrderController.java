@@ -2,55 +2,36 @@ package org.rabbit.front.order.web;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
 import org.rabbit.common.code.ResponseResult;
-import org.rabbit.entity.order.OrderHeader;
-import org.rabbit.service.order.impl.OrderHeaderService;
+import org.rabbit.entity.order.Order;
+import org.rabbit.service.order.OrderService;
+import org.rabbit.service.order.impl.OrderServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.baomidou.mybatisplus.extension.api.ApiController;
+
+/**
+ * 订单中心控制类
+ * @author geestu
+ *
+ */
 @Controller
-public class OrderController {
+@RequestMapping("order")
+public class OrderController extends ApiController {
 
-	private OrderHeaderService orderHeaderService;
+	private OrderService orderService;
 
-	@RequestMapping("pay")
-	@ResponseBody
-	public Object payOrder(List<OrderHeader> orderHeaders) {
-		orderHeaderService.payOrder(orderHeaders);
-		OrderHeader orderHeader = new OrderHeader();
-		return new ResponseResult<OrderHeader>(1000, orderHeader);
-	}
-	
 	@RequestMapping("create")
 	@ResponseBody
-	public Object create(@RequestBody List<OrderHeader> orderHeaders) {
-		orderHeaderService.createOrders(orderHeaders); 
-		ResponseResult<OrderHeader> responseResult = new ResponseResult<OrderHeader>();
-		responseResult.setDataList(orderHeaders);
+	public Object create(@RequestBody List<Order> orders) {
+		orderService.createOrders(orders); 
+		ResponseResult<Order> responseResult = new ResponseResult<Order>();
+		responseResult.setDataList(orders);
 		responseResult.setCode(1000);
 		return responseResult;
 	}
 	
-	@RequestMapping("update")
-	@ResponseBody
-	public Object update(@RequestBody List<OrderHeader> orderHeaders) {
-		orderHeaderService.update(orderHeaders);
-		ResponseResult<OrderHeader> responseResult = new ResponseResult<OrderHeader>();
-		responseResult.setDataList(orderHeaders);
-		responseResult.setCode(1000);
-		return responseResult;
-	}
-	
-	@RequestMapping("disable")
-	@ResponseBody
-	public Object disable(@RequestBody List<Integer> ids) {
-		boolean flag =  orderHeaderService.disable(ids);
-		ResponseResult<OrderHeader> responseResult = new ResponseResult<OrderHeader>();
-		responseResult.setCode(flag == true ? 1000 : 550);
-		return responseResult;
-	} 
 }

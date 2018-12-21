@@ -1,6 +1,8 @@
 package org.rabbit.common.enums;
 
-public enum PaySourceType {
+import com.baomidou.mybatisplus.core.enums.IEnum;
+
+public enum PaySourceType implements IEnum<Integer> {
 
 	PC(0, "PC", "PC"), WECHAT(1, "微信", "微信"), PHONE(2, "手机网页", "手机网页");
 
@@ -10,6 +12,7 @@ public enum PaySourceType {
 
 	private String desc;
 
+	@Override
 	public Integer getValue() {
 		return value;
 	}

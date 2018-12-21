@@ -1,9 +1,11 @@
 package org.rabbit.common.enums;
 
+import com.baomidou.mybatisplus.core.enums.IEnum;
+
 /**
  * 订单状态 
  */
-public enum OrderStatus {
+public enum OrderStatus implements IEnum<Integer> {
 
 	SUBMITTED(0,"已提交","已提交"),
 	UNPAID(1,"未支付","未支付"),
@@ -21,6 +23,7 @@ public enum OrderStatus {
 
     private String desc;
 
+    @Override
 	public Integer getValue() {
 		return value;
 	}
@@ -50,5 +53,4 @@ public enum OrderStatus {
         this.name = name;
         this.desc = desc;
     }
-
 }

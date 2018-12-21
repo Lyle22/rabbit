@@ -1,6 +1,8 @@
 package org.rabbit.common.enums;
 
-public enum OrderLineStatus {
+import com.baomidou.mybatisplus.core.enums.IEnum;
+
+public enum OrderLineStatus implements IEnum<Integer>{
 
 	UNPAID(0, "待支付", "待支付"),
 	PENDING(1, "退款待审核", "退款待审核"), 
@@ -18,8 +20,9 @@ public enum OrderLineStatus {
 
 	private String desc;
 
+	@Override
 	public Integer getValue() {
-		return value;
+		return this.value;
 	}
 
 	public void setValue(Integer value) {
@@ -27,7 +30,7 @@ public enum OrderLineStatus {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -35,7 +38,7 @@ public enum OrderLineStatus {
 	}
 
 	public String getDesc() {
-		return desc;
+		return this.desc;
 	}
 
 	public void setDesc(String desc) {
