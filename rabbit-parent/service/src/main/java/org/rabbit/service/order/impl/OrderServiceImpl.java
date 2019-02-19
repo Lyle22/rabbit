@@ -9,18 +9,17 @@ import org.rabbit.entity.order.Order;
 import org.rabbit.service.order.OrderService;
 import org.rabbit.service.order.dao.OrderMapper;
 import org.rabbit.service.trade.TradeInfoService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.google.common.collect.Lists;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
-
-	private Logger logger = LoggerFactory.getLogger(OrderServiceImpl.class);
 
 	@Autowired
 	private OrderMapper orderDao;
