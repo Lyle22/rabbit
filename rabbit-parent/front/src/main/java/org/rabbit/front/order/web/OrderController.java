@@ -5,6 +5,7 @@ import java.util.List;
 import org.rabbit.common.code.ResponseResult;
 import org.rabbit.entity.order.Order;
 import org.rabbit.service.order.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import com.baomidou.mybatisplus.extension.api.ApiController;
 @RequestMapping("order")
 public class OrderController extends ApiController {
 
+	@Autowired
 	private OrderService orderService;
 
 	@RequestMapping("create")
@@ -29,6 +31,16 @@ public class OrderController extends ApiController {
 		orderService.createOrders(orders); 
 		ResponseResult<Order> responseResult = new ResponseResult<Order>();
 		responseResult.setDataList(orders);
+		responseResult.setCode(1000);
+		return responseResult;
+	}
+	
+	@RequestMapping("query")
+	@ResponseBody
+	public Object query() {
+		List<Order> dataList = orderService.list(); 
+		ResponseResult<Order> responseResult = new ResponseResult<Order>();
+		responseResult.setDataList(dataList);
 		responseResult.setCode(1000);
 		return responseResult;
 	}
