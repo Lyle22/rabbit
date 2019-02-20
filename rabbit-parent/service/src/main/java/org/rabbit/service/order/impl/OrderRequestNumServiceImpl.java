@@ -11,7 +11,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 public class OrderRequestNumServiceImpl extends ServiceImpl<OrderRequestNumMapper, OrderRequestNum> implements OrderRequestNumService {
 
 	public OrderRequestNum selectByOrderId(Integer firstOrderId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
