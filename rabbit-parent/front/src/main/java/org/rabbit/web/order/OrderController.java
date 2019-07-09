@@ -1,4 +1,4 @@
-package org.rabbit.web;
+package org.rabbit.web.order;
 
 import java.util.List;
 

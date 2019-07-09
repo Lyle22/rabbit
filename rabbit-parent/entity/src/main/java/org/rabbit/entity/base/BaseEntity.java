@@ -2,6 +2,7 @@ package org.rabbit.entity.base;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
@@ -17,15 +18,12 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class BaseEntity {
 	
-	@TableId
+	// 主键采用自增方式
+	@TableId(type=IdType.AUTO)
 	private Integer id;
 	
 	private String remarks;
 	
-	@TableField("del_flag")
-	@TableLogic
-	private Integer delFlag;
-
 	@TableField("create_date")
 	private Date createDate;
 	
@@ -38,4 +36,7 @@ public class BaseEntity {
 	@TableField("update_date")
 	private Date updateDate;
 
+	@TableField("flag")
+	@TableLogic
+	private Integer flag;
 }

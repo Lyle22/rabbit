@@ -1,6 +1,182 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.rabbit.service.order.dao.OrderMapper">
-  
-  
+	<resultMap type="org.rabbit.entity.order.Order" id="resultMap">
+	    <id property="id" column="id"/>
+		<result property="orderNumber" column="order_number" />
+		<result property="remitCode" column="remit_code" />
+		<result property="cancelDate" column="cancel_date" />
+		<result property="status" column="order_status" />
+		<result property="goodsName" column="goods_name" />
+		<result property="specifications" column="specifications" />
+		<result property="buyNum" column="buy_num" />
+		<result property="unitPrice" column="unit_price" />
+		<result property="amount" column="amount" />
+		<result property="payWay" column="pay_way" />
+		<result property="requestNum" column="request_num" />
+		<result property="message" column="message" />
+		<result column="create_by" jdbcType="VARCHAR" property="createBy" />
+	    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+	    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+	    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+	    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+	    <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
+	</resultMap>
+
+	<sql id="baseColumns">
+		o.id,
+		o.order_number,
+		o.goods_name,
+		o.specifications,
+		o.order_status,
+		o.pay_way,
+		o.amount,
+		o.buy_num,
+		o.unit_price,
+		o.request_num,
+		o.remit_code,
+		o.cancel_date,
+		o.message,
+		o.create_date,
+		o.update_date,
+		o.create_by,
+		o.update_by,
+		o.remarks,
+		o.del_flag
+	</sql>
+
+	<select id="list" resultMap="resultMap">
+		SELECT 
+			<include refid="baseColumns"/>
+		FROM 
+			rb_order o 
+		<where>
+			<if test="id !=null">
+				and o.id = #{id}
+			</if>
+			<if test="orderNumber !=null and orderNumber!=''">
+			  AND o.order_number = #{orderNumber}
+			</if>
+			<if test="remitCode !=null and remitCode!=''">
+			  AND o.remit_code = #{remitCode}
+			</if>
+			<if test=" cancelDate!=null and cancelDate!=''">
+			  AND o.cancel_date = #{cancelDate}
+			</if>
+			<if test=" status!=null and status!=''">
+			  AND o.order_status = #{status}
+			</if>
+			<if test=" goodsName!=null and goodsName!=''">
+			  AND o.goods_name = #{goodsName}
+			</if>
+			<if test="specifications !=null and specifications!=''">
+			  AND o.specifications = #{specifications}
+			</if>
+			<if test="buyNum !=null">
+			  AND o.buy_num = #{buyNum}
+			</if>
+			<if test="unitPrice !=null and unitPrice!=''">
+			  AND o.unit_price = #{unitPrice}
+			</if>
+			<if test="amount !=null and amount!=''">
+			  AND o.amount = #{amount}
+			</if>
+			<if test="payWay !=null and payWay!=''">
+			  AND o.pay_way = #{payWay}
+			</if>
+			<if test="requestNum !=null and requestNum!=''">
+			  AND o.request_num = #{requestNum}
+			</if>
+			<if test="message !=null and message !=''">
+			  AND o.message = #{message}
+			</if> 
+		</where> 
+	</select>
+	
+	<insert id="insert" parameterType="org.rabbit.entity.order.Order" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO rb_order (
+			order_number,
+			goods_name,
+			specifications,
+			order_status,
+			pay_way,
+			amount,
+			buy_num,
+			unit_price,
+			request_num,
+			remit_code,
+			cancel_date,
+			message,
+			create_date,
+			update_date,
+			create_by,
+			update_by,
+			remarks,
+			del_flag)
+		VALUES(
+			#{orderNumber},
+			#{remitCode},
+			#{cancelDate},
+			#{status},
+			#{goodsName},
+			#{specifications},
+			#{buyNum},
+			#{unitPrice},
+			#{amount},
+			#{payWay},
+			#{requestNum},
+			#{message},
+			#{createDate},
+			#{updateDate},
+			#{createBy},
+			#{updateBy},
+			#{remarks},
+			#{del_flag}
+		)
+	</insert>
+	
+	<update id="update" parameterType="org.rabbit.entity.order.Order">
+		update rb_order 
+		<set>
+			<if test="orderNumber !=null and orderNumber!=''">
+			  o.order_number = #{orderNumber},
+			</if>
+			<if test="remitCode !=null and remitCode!=''">
+			   o.remit_code = #{remitCode},
+			</if>
+			<if test=" cancelDate!=null and cancelDate!=''">
+			   o.cancel_date = #{cancelDate},
+			</if>
+			<if test=" status!=null and status!=''">
+			   o.order_status = #{status},
+			</if>
+			<if test=" goodsName!=null and goodsName!=''">
+			   o.goods_name = #{goodsName},
+			</if>
+			<if test="specifications !=null and specifications!=''">
+			   o.specifications = #{specifications},
+			</if>
+			<if test="buyNum !=null">
+			   o.buy_num = #{buyNum},
+			</if>
+			<if test="unitPrice !=null and unitPrice!=''">
+			   o.unit_price = #{unitPrice},
+			</if>
+			<if test="amount !=null and amount!=''">
+			   o.amount = #{amount},
+			</if>
+			<if test="payWay !=null and payWay!=''">
+			   o.pay_way = #{payWay},
+			</if>
+			<if test="requestNum !=null and requestNum!=''">
+			   o.request_num = #{requestNum},
+			</if>
+			<if test="message !=null and message !=''">
+			   o.message = #{message},
+			</if> 
+			update_by = #{updateBy},
+			update_date = #{updateDate},
+		</set>
+		where id = #{id}
+	</update>
 </mapper>

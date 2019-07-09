@@ -1,57 +1,8 @@
 #app
 server:
     port: 8099
-
-#spring
+    
+#spring 读取其他配置文件
 spring:
-  devtools:
-    restart:
-      enabled: false
-
-  # H2 DATABASE CONFIG
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    schema: classpath:/sql/schema.sql
-    data: classpath:/sql/ddl.sql
-    url: jdbc:mysql://localhost:3306/rabbit?&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
-    username: root
-    password: root
-    platform: h2
-    initialization-mode: always
-    continue-on-error: true
-  h2:
-    console:
-      enabled: true
-      path: /rabbit
-
-#mybatis
-mybatis-plus:
-  mapper-locations: classpath:/mappings/*/*Mapper.xml
-  #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: org.rabbit.entity
-  typeEnumsPackage: org.rabbit.common.enums
-  global-config:
-    # 数据库相关配置
-    db-config:
-      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
-      id-type: id_worker
-      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
-      field-strategy: not_empty
-      #驼峰下划线转换
-      column-underline: true
-      #数据库大写下划线转换
-      #capital-mode: true
-      #逻辑删除配置（下面3个配置）
-      logic-delete-value: 1
-      logic-not-delete-value: 0
-      sql-injector: com.baomidou.mybatisplus.mapper.LogicSqlInjector
-      db-type: h2
-    #刷新mapper 调试神器
-    refresh: true
-  # 原生配置
-  configuration:
-    map-underscore-to-camel-case: true
-    cache-enabled: false
-##logging
-#logging:
-#  level: warn
+  profiles:
+    active: base
