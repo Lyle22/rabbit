@@ -38,5 +38,5 @@ public class BaseEntity {
 
 	@TableField("flag")
 	@TableLogic
-	private Integer flag;
+	private Integer Flag;
 }
