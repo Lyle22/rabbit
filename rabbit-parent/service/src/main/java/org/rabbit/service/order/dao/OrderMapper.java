@@ -6,7 +6,6 @@ import org.rabbit.entity.order.Order;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
-
 public interface OrderMapper extends BaseMapper<Order>{
 
 	int deleteByPrimaryKey(Order orderHeader);

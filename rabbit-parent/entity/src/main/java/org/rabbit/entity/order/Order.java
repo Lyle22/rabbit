@@ -4,18 +4,20 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 import org.rabbit.common.enums.OrderStatus;
-import org.rabbit.common.enums.PayWay;
 import org.rabbit.entity.base.BaseEntity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import lombok.experimental.Tolerate;
 
 @Data
+@Builder(toBuilder = true)
+@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName(value = "rb_order")
 public class Order extends BaseEntity{
 
 	@TableField("order_number")
@@ -26,7 +28,6 @@ public class Order extends BaseEntity{
 	@TableField("cancel_date")
 	private Date cancelDate;
 
-	@TableField("order_status")
 	private OrderStatus status;
 	
 	/**
@@ -35,7 +36,7 @@ public class Order extends BaseEntity{
 	private String goodsName;
 
 	/**
-	 * 
+	 * 汇款识别码
 	 */
 	private String specifications;
 
@@ -50,23 +51,23 @@ public class Order extends BaseEntity{
 	private BigDecimal unitPrice;
 
 	/**
+	 * 优惠价
+	 */
+	private BigDecimal discountPrice;
+
+	/**
 	 * 总金额
 	 */
 	private BigDecimal amount;
-	
-	/**
-	 * 支付方式
-	 */
-	private PayWay payWay;
 
-	/**
-	 * 支付编号
-	 */
-	private String requestNum;
-	
 	/**
 	 * 备注
 	 */
 	private String message;
-	
+
+	@Tolerate
+	public Order() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 }

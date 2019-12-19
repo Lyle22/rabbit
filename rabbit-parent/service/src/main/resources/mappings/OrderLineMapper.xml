@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.rabbit.service.order.dao.OrderLineDao">
+  <resultMap id="BaseResultMap" type="org.rabbit.entity.order.OrderLine">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="line_status" typeHandler="com.jeeplus.common.enums.api.impl.IntegerValueEnumTypeHandler" property="lineStatus" />
+    <result column="header_id" jdbcType="INTEGER" property="headerId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="buy_num" jdbcType="DECIMAL" property="buyNum" />
+    <result column="unit_price" jdbcType="DECIMAL" property="unitPrice" />
+    <result column="discount_price" jdbcType="DECIMAL" property="discountPrice" />
+    <result column="amount" jdbcType="DECIMAL" property="amount" />
+    <result column="message" jdbcType="VARCHAR" property="message" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+  	    ol.id,
+		ol.header_id,
+		ol.goods_name,
+		ol.specifications,
+		ol.buy_num,
+		ol.unit_price,
+		ol.discount_price,
+		ol.amount,
+		ol.line_status,
+		ol.message,
+		ol.create_by,
+		ol.create_date,
+		ol.update_by,
+		ol.update_date,
+		ol.remarks,
+		ol.del_flag 
+  </sql>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from order_line
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+        <include refid="Base_Column_List" />
+    from order_line ol 
+    where ol.del_flag = '0' 
+    AND ol.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="insert" parameterType="org.rabbit.entity.order.OrderLine" useGeneratedKeys="true" keyProperty="id">
+      INSERT INTO order_line (
+		  create_by,
+		  create_date,
+		  update_by,
+		  update_date,
+		  remarks,
+		  del_flag,
+		  header_id,
+		  goods_name,
+		  buy_num,
+		  unit_price,
+		  discount_price,
+		  specifications,
+		  line_status,
+		  message
+		) 
+		VALUES
+		 (#{createBy,jdbcType=VARCHAR}, 
+		  #{createDate,jdbcType=TIMESTAMP}, 
+          #{updateBy,jdbcType=VARCHAR}, 
+          #{updateDate,jdbcType=TIMESTAMP}, 
+          #{remarks,jdbcType=VARCHAR}, 
+          #{delFlag,jdbcType=VARCHAR}, 
+          #{headerId,jdbcType=INTEGER}, 
+          #{goodsName,jdbcType=VARCHAR}, 
+          #{buyNum,jdbcType=DECIMAL}, 
+          #{unitPrice,jdbcType=DECIMAL}, 
+          #{discountPrice,jdbcType=DECIMAL},
+          #{specifications,jdbcType=VARCHAR}, 
+          #{lineStatus,typeHandler=com.jeeplus.common.enums.api.impl.IntegerValueEnumTypeHandler}, 
+          #{message,jdbcType=VARCHAR}) 
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="org.rabbit.entity.order.OrderLine">
+    update order_line
+    <set>
+        <if test="updateBy != null and updateBy != '' " >
+            update_by = #{updateBy,jdbcType=VARCHAR},
+        </if>
+        <if test="updateDate != null and updateDate != '' " >
+            update_date = #{updateDate,jdbcType=TIMESTAMP},
+        </if>
+        <if test="remarks != null and remarks != '' " >
+            remarks = #{remarks,jdbcType=VARCHAR},
+        </if>
+        <if test="delFlag != null and delFlag != '' " >
+            del_flag = #{delFlag,jdbcType=VARCHAR},
+        </if>
+        <if test="goodsName !=null and goodsName != ''">
+            goods_name = #{goodsName,jdbcType=VARCHAR},
+        </if>
+        <if test="buyNum !=null and buyNum != ''">
+		    buy_num = #{buyNum,jdbcType=DECIMAL},
+        </if>
+        <if test="unitPrice !=null and unitPrice != ''">
+            unit_price = #{unitPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="discountPrice !=null and discountPrice != ''">
+            discount_price = #{discountPrice,jdbcType=DECIMAL},
+        </if>
+        <if test="specifications !=null and  specifications != ''">
+            specifications = #{specifications,jdbcType=VARCHAR},
+        </if>
+        <if test="lineStatus !=null">
+            line_status = #{lineStatus,typeHandler=com.jeeplus.common.enums.api.impl.IntegerValueEnumTypeHandler},
+        </if>
+        <if test="message !=null and message != ''">
+            message = #{message, jdbcType=VARCHAR},
+        </if>
+        
+    </set> 
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+ <update id="updateByPrimaryKeySelective" parameterType="org.rabbit.entity.order.OrderLine" >
+    update order_line
+    <set >
+      <if test="lineStatus != null" >
+        line_status = #{lineStatus,typeHandler=com.jeeplus.common.enums.api.impl.IntegerValueEnumTypeHandler},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="headerId != null" >
+        header_id = #{headerId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsName != null" >
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyNum != null" >
+        buy_num = #{buyNum,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DECIMAL},
+      </if> 
+      <if test="specifications != null" >
+        specifications = #{specifications,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateStatusByHeaderId" parameterType="org.rabbit.entity.order.OrderLine">
+    update order_line
+    set 
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      line_status = #{lineStatus,typeHandler=com.jeeplus.common.enums.api.impl.IntegerValueEnumTypeHandler}
+    where header_id = #{headerId,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectTotalAmount" parameterType="java.lang.Integer" resultType="java.math.BigDecimal">
+    SELECT IFNULL(SUM(ol.amount), 0) 
+    FROM order_line ol
+    where ol.header_id = #{headerId,jdbcType=INTEGER}
+  </select>
+  
+  <update id="disable" parameterType="java.lang.Integer">
+    update order_line 
+    set line_status = 6
+    where id = #{id, jdbcType=INTEGER}   
+  </update>  
+</mapper>

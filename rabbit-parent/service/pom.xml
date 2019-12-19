@@ -5,6 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>service</artifactId>
 	<name>service</name>
+	<url>http://maven.apache.org</url>
 	
 	<parent>
 		<groupId>com.rabbit</groupId>
@@ -16,11 +17,6 @@
 		<dependency>
 			<groupId>com.rabbit</groupId>
 			<artifactId>entity</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.rabbit</groupId>
-			<artifactId>cofigure</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
