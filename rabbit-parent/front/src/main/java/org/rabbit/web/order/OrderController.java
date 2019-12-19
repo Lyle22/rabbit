@@ -35,7 +35,7 @@ public class OrderController extends ApiController {
 		orderService.createOrders(orders); 
 		ResponseResult<Order> responseResult = new ResponseResult<Order>();
 		responseResult.setDataList(orders);
-		responseResult.setCode(1000);
+		responseResult.setCode("200");
 		return responseResult;
 	}
 	
@@ -45,7 +45,7 @@ public class OrderController extends ApiController {
 		List<Order> dataList = orderService.list(); 
 		ResponseResult<Order> responseResult = new ResponseResult<Order>();
 		responseResult.setDataList(dataList);
-		responseResult.setCode(1000);
+		responseResult.setCode("200");
 		return responseResult;
 	}
 	

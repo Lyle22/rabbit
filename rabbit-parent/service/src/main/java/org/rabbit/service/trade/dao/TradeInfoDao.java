@@ -2,7 +2,9 @@ package org.rabbit.service.trade.dao;
 
 import org.rabbit.entity.trade.TradeInfo;
 
-public interface TradeInfoDao {
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+public interface TradeInfoDao extends BaseMapper<TradeInfo> {
 
 	int insert(TradeInfo tradeInfo);
 

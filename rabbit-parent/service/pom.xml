@@ -6,7 +6,7 @@
 	<artifactId>service</artifactId>
 	<name>service</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<parent>
 		<groupId>com.rabbit</groupId>
 		<artifactId>rabbit-parent</artifactId>
@@ -18,6 +18,10 @@
 			<groupId>com.rabbit</groupId>
 			<artifactId>entity</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
 	</dependencies>
 
