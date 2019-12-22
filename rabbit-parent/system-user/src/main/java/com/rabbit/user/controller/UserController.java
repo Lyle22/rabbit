@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rabbit.RedisConfig.RedisUtil;
 import com.rabbit.user.service.UserService;
 
 @RestController
@@ -25,6 +26,23 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RedisUtil redisUtil;
+	
+	@ResponseBody
+	@RequestMapping("redis")
+	public Object redis(Model model) {
+		redisUtil.set("username", "正光", 10000);
+		return redisUtil.get("username");
+	}
+	
+	@ResponseBody
+	@RequestMapping("get")
+	public String getRedis(Model model) {
+		System.err.println(redisUtil.get("username"));
+		return redisUtil.get("username").toString();
+	}
 
 	@ResponseBody
 	@RequestMapping("page")
