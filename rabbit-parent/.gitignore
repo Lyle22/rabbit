@@ -15,6 +15,9 @@
 hs_err_pid*
 
 /.project
+*.project
+
+*.MF
 
 
 # https://github.com/github/gitignore/blob/master/Maven.gitignore
