@@ -25,7 +25,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     @ResponseBody
     public ResponseResult<BizException> httpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
-        logger.error("http请求的方法不正确:【"+e.getMessage()+"】");
         return new ResponseResult<BizException>().error(BaseEnum.BAD_METHOD);
     }
 
