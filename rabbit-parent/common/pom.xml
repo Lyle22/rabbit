@@ -8,7 +8,7 @@
 	<url>http://maven.apache.org</url>
 
 	<parent>
-		<groupId>com.rabbit</groupId>
+		<groupId>org.rabbit</groupId>
 		<artifactId>rabbit-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>

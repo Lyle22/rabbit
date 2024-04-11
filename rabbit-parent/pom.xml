@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.rabbit</groupId>
+	<groupId>org.rabbit</groupId>
 	<artifactId>rabbit-parent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -23,9 +23,14 @@
 		<mybatis-plus-boot-starter.version>3.0.6</mybatis-plus-boot-starter.version>
 		<HikariCP.version>3.2.0</HikariCP.version>
 
-		<com.rabbit.common.version>0.0.1-SNAPSHOT</com.rabbit.common.version>
-		<com.rabbit.entity.version>0.0.1-SNAPSHOT</com.rabbit.entity.version>
-		<com.rabbit.configure.version>0.0.1-SNAPSHOT</com.rabbit.configure.version>
+		<org.rabbit.common.version>0.0.1-SNAPSHOT</org.rabbit.common.version>
+		<org.rabbit.tools.version>0.0.1-SNAPSHOT</org.rabbit.tools.version>
+		<org.rabbit.entity.version>0.0.1-SNAPSHOT</org.rabbit.entity.version>
+		<org.rabbit.configure.version>0.0.1-SNAPSHOT</org.rabbit.configure.version>
+		<org.rabbit.system-core.version>0.0.1-SNAPSHOT</org.rabbit.system-core.version>
+		<org.rabbit.service.version>0.0.1-SNAPSHOT</org.rabbit.service.version>
+		<org.rabbit.system-api.version>0.0.1-SNAPSHOT</org.rabbit.system-api.version>
+		<org.rabbit.front.version>0.0.1-SNAPSHOT</org.rabbit.front.version>
 	</properties>
 
 	<modules>

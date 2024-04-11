@@ -8,7 +8,7 @@
     <url>http://maven.apache.org</url>
 
     <parent>
-        <groupId>com.rabbit</groupId>
+        <groupId>org.rabbit</groupId>
         <artifactId>rabbit-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -17,33 +17,26 @@
         <dependency>
             <groupId>com.rabbit</groupId>
             <artifactId>service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${org.rabbit.service.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.2.0</version>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>org.rabbit.FrontApplication</mainClass>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>purge-local-dependencies</id>
-                        <phase>process-sources</phase>
                         <goals>
-                            <goal>purge-local-repository</goal>
+                            <goal>repackage</goal>
                         </goals>
-                        <configuration>
-                            <includes>
-                                <include>com.rabbit:entity</include>
-                                <include>com.rabbit:common</include>
-                            </includes>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
     </build>
 
