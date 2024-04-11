@@ -1,51 +1,51 @@
 package org.rabbit.entity.trade;
 
-import java.math.BigDecimal;
-
-import org.rabbit.common.enums.PaySourceType;
-import org.rabbit.common.enums.PayWay;
-import org.rabbit.entity.base.BaseEntity;
-
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Tolerate;
+import org.rabbit.common.enums.PaySourceType;
+import org.rabbit.common.enums.PayWay;
+import org.rabbit.entity.base.BaseEntity;
+
+import java.math.BigDecimal;
 
 /**
  * 交易表
- * 
- * @author geestu
  *
+ * @author geestu
  */
 @Data
 @Builder(toBuilder = true)
 @EqualsAndHashCode(callSuper = false)
-public class TradeInfo extends BaseEntity{
+public class TradeInfo extends BaseEntity {
 
-	private String outTradeNo;
+    private String outTradeNo;
 
-	private PayWay tradeWay;
+    private PayWay tradeWay;
 
-	private PaySourceType srcType;
+    private PaySourceType type;
 
-	private String tradeWayName;
+    private PaySourceType srcType;
 
-	private String tradeFlow;
+    private String tradeWayName;
 
-	private BigDecimal amount;
+    private String tradeFlow;
 
-	private String tradeDate;
+    private BigDecimal amount;
 
-	private String tradeStatus;
+    private String tradeDate;
 
-	private String msg;
+    private String tradeStatus;
 
-	private String returnUrl;
+    private String msg;
 
-	private String extraParams;
+    private String returnUrl;
 
-	@Tolerate
-	public TradeInfo() {
-		super();
-	}
+    private String extraParams;
+
+    @Tolerate
+    public TradeInfo() {
+        super();
+    }
 }

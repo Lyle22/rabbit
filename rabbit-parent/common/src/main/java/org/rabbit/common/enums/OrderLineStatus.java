@@ -1,8 +1,8 @@
 package org.rabbit.common.enums;
 
-import com.baomidou.mybatisplus.core.enums.IEnum;
+import com.baomidou.mybatisplus.annotation.IEnum;
 
-public enum OrderLineStatus implements IEnum<Integer>{
+public enum OrderLineStatus implements IEnum<Integer> {
 
 	UNPAID(0, "待支付", "待支付"),
 	PENDING(1, "退款待审核", "退款待审核"), 

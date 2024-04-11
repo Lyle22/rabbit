@@ -16,8 +16,13 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.rabbit</groupId>
+			<artifactId>common</artifactId>
+			<version>${com.rabbit.common.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.rabbit</groupId>
 			<artifactId>entity</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${com.rabbit.entity.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

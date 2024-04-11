@@ -1,111 +1,83 @@
 package org.rabbit.tools;
 
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
+import com.baomidou.mybatisplus.core.metadata.TableInfo;
+import com.baomidou.mybatisplus.core.toolkit.StringPool;
+import com.baomidou.mybatisplus.generator.AutoGenerator;
+import com.baomidou.mybatisplus.generator.FastAutoGenerator;
+import com.baomidou.mybatisplus.generator.config.OutputFile;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import org.apache.commons.lang3.StringUtils;
-
-import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.FileOutConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.TemplateConfig;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
-
 public class GenerateCode {
 
-	/**
-	 * <p>
-	 * 读取控制台内容
-	 * </p>
-	 */
-	public static String scanner(String tip) {
-		Scanner scanner = new Scanner(System.in);
-		StringBuilder help = new StringBuilder();
-		help.append("请输入" + tip + "：");
-		System.out.println(help.toString());
-		if (scanner.hasNext()) {
-			String ipt = scanner.next();
-			if (StringUtils.isNotEmpty(ipt)) {
-				return ipt;
-			}
-		}
-		throw new MybatisPlusException("请输入正确的" + tip + "！");
-	}
+    /**
+     * <p>
+     * 读取控制台内容
+     * </p>
+     */
+    public static String scanner(String tip) {
+        Scanner scanner = new Scanner(System.in);
+        StringBuilder help = new StringBuilder();
+        help.append("请输入" + tip + "：");
+        System.out.println(help.toString());
+        if (scanner.hasNext()) {
+            String ipt = scanner.next();
+            if (StringUtils.isNotEmpty(ipt)) {
+                return ipt;
+            }
+        }
+        throw new MybatisPlusException("请输入正确的" + tip + "！");
+    }
 
-	/**
-	 * RUN THIS
-	 */
-	public static void main(String[] args) {
-		// 代码生成器
-		AutoGenerator mpg = new AutoGenerator();
+    /**
+     * RUN THIS
+     */
+    public static void main(String[] args) {
+        String url = "jdbc:mysql://localhost:3306/nine?useSSL=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+        String username = "root";
+        String password = "root";
+        String projectPath = System.getProperty("user.dir");
 
-		// 全局配置
-		GlobalConfig gc = new GlobalConfig();
-		String projectPath = System.getProperty("user.dir");
-		gc.setOutputDir(projectPath + "/config-core/src/main/java");
-		gc.setAuthor("liangfawen");
-		gc.setOpen(false);
-		mpg.setGlobalConfig(gc);
+        FastAutoGenerator.create(url, username, password)
+                .globalConfig(builder -> {
+                    builder.author("username") // 设置作者
+                            .enableSwagger() // 开启 swagger 模式
+                            .fileOverride() // 覆盖已生成文件
+                            .outputDir(projectPath + "/config-core/src/main/java"); // 指定输出目录
+                })
+                .packageConfig(builder -> {
+                    builder.parent("com.baomidou.mybatisplus.samples.generator") // 设置父包名
+                            .moduleName(scanner("模块名")) // 设置父包模块名
+                            .pathInfo(Collections.singletonMap(
+                                    OutputFile.xml, projectPath + "\\config-core\\src\\main\\java\\mapper")
+                            ); // 设置mapperXml生成路径
+                })
+                .strategyConfig(builder -> {
+                    builder.addInclude(scanner("system_setting")) // 设置需要生成的表名
+                            .addTablePrefix("t_", "c_"); // 设置过滤表前缀
+                })
+                .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
+                .execute();
+//		// 策略配置
+//		StrategyConfig strategy = new StrategyConfig();
+//		strategy.setNaming(NamingStrategy.underline_to_camel);
+//		strategy.setColumnNaming(NamingStrategy.underline_to_camel);
+//		strategy.setEntityLombokModel(true);
+//		strategy.setInclude(scanner("表名"));
+//		strategy.setSuperEntityColumns("id");
+//		strategy.setControllerMappingHyphenStyle(true);
+//		strategy.setTablePrefix(pc.getModuleName() + "_");
+//		mpg.setStrategy(strategy);
+//		// 选择 freemarker 引擎需要指定如下加，注意 pom 依赖必须有！
+//		mpg.setTemplateEngine(new FreemarkerTemplateEngine());
+//		mpg.execute();
+    }
 
-		// 数据源配置
-		DataSourceConfig dsc = new DataSourceConfig();
-		dsc.setUrl("jdbc:mysql://...");// 这里是你连接MYSQL的URL
-		// dsc.setSchemaName("public");
-		dsc.setDriverName("com.mysql.cj.jdbc.Driver");
-		dsc.setUsername("root");
-		dsc.setPassword("root");// 你数据库的密码
-		mpg.setDataSource(dsc);
-
-		// 包配置
-		PackageConfig pc = new PackageConfig();
-		// 模块名
-		pc.setModuleName(scanner("模块名"));
-		// 
-		pc.setParent("com.jd.jr.jwd.rule.config.core.autodao");
-		mpg.setPackageInfo(pc);
-
-		// 自定义配置
-		InjectionConfig cfg = new InjectionConfig() {
-			@Override
-			public void initMap() {
-				// to do nothing
-			}
-		};
-		List<FileOutConfig> focList = new ArrayList<>();
-		focList.add(new FileOutConfig("/templates/mapper.xml.ftl") {
-
-			@Override
-			public String outputFile(TableInfo tableInfo) {
-				// 这里定义了mapper的xml生成的路径，生成的名字你自己也可以修改
-				return projectPath + "/config-core/src/main/resources/mybatisplus/"//
-						+ tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
-			}
-		});
-		cfg.setFileOutConfigList(focList);
-		mpg.setCfg(cfg);
-		mpg.setTemplate(new TemplateConfig().setXml(null));
-
-		// 策略配置
-		StrategyConfig strategy = new StrategyConfig();
-		strategy.setNaming(NamingStrategy.underline_to_camel);
-		strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-		strategy.setEntityLombokModel(true);
-		strategy.setInclude(scanner("表名"));
-		strategy.setSuperEntityColumns("id");
-		strategy.setControllerMappingHyphenStyle(true);
-		strategy.setTablePrefix(pc.getModuleName() + "_");
-		mpg.setStrategy(strategy);
-		// 选择 freemarker 引擎需要指定如下加，注意 pom 依赖必须有！
-		mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-		mpg.execute();
-	}
 }

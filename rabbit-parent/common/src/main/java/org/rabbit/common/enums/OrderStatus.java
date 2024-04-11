@@ -1,6 +1,6 @@
 package org.rabbit.common.enums;
 
-import com.baomidou.mybatisplus.core.enums.IEnum;
+import com.baomidou.mybatisplus.annotation.IEnum;
 
 /**
  * 订单状态 

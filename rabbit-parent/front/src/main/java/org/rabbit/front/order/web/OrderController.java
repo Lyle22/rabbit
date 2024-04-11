@@ -1,9 +1,5 @@
 package org.rabbit.front.order.web;
 
-import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-
 import org.apache.commons.lang3.time.DateUtils;
 import org.rabbit.common.code.ResponseResult;
 import org.rabbit.entity.order.Order;
@@ -14,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.baomidou.mybatisplus.extension.api.ApiController;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 订单中心控制类
@@ -23,7 +21,7 @@ import com.baomidou.mybatisplus.extension.api.ApiController;
  */
 @Controller
 @RequestMapping("order")
-public class OrderController extends ApiController {
+public class OrderController {
 
 	private OrderService orderService;
 
