@@ -1,13 +1,12 @@
-package org.rabbit.cofig;
+package org.rabbit.configuration;
 
+import com.baomidou.mybatisplus.core.injector.DefaultSqlInjector;
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import com.baomidou.mybatisplus.core.injector.ISqlInjector;
-import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
-import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 
 @EnableTransactionManagement(proxyTargetClass = true)
 @Configuration
@@ -18,16 +17,17 @@ public class MybatisPlusConfig {
      * 分页插件
      */
     @Bean
-    public PaginationInterceptor paginationInterceptor() {
-        return new PaginationInterceptor();
+    public PaginationInnerInterceptor paginationInterceptor() {
+        return new PaginationInnerInterceptor();
     }
-    
+
     /**
      * 逻辑删除
+     *
      * @return
      */
     @Bean
     public ISqlInjector sqlInjector() {
-        return new LogicSqlInjector();
+        return new DefaultSqlInjector();
     }
 }

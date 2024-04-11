@@ -1,4 +1,4 @@
-package org.rabbit.cofig;
+package org.rabbit.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +12,7 @@ import org.springframework.web.filter.CorsFilter;
  * @author zhengguang 日期：2019年1月2日 上午10:06:49
  */
 @Configuration
-public class CosrConfig {
+public class CorsConfig {
 
   private CorsConfiguration buildConfig() {
     CorsConfiguration corsConfiguration = new CorsConfiguration();

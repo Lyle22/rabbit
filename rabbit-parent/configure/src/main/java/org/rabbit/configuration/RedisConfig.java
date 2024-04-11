@@ -1,4 +1,4 @@
-package org.rabbit.cofig;
+package org.rabbit.configuration;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

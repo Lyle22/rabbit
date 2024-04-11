@@ -17,7 +17,7 @@ import java.util.List;
  * @author geestu
  *
  */
-@Controller
+@RestController
 @RequestMapping("order")
 public class OrderController {
 
