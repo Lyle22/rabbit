@@ -19,12 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 public class AutoRedisConfig {
 
-
-    /**
-     * retemplate相关配置
-     * @param factory
-     * @return
-     */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
 

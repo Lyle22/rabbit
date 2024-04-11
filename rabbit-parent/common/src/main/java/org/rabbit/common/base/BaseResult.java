@@ -1,16 +1,20 @@
 package org.rabbit.common.base;
 
 /**
- * 返回属性基类
- * 
- * @author zzg
+ * The base class of return result
+ *
+ * @author nine
  * @since 2019-12-20
  */
 public interface BaseResult {
-	
-	/** 错误码 */
-	String getResultCode();
 
-	/** 错误描述 */
-	String getResultMsg();
+    /**
+     * 错误码
+     */
+    String getResultCode();
+
+    /**
+     * 错误描述
+     */
+    String getResultMsg();
 }
