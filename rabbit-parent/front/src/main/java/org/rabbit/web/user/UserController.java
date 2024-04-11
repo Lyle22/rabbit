@@ -2,7 +2,7 @@ package org.rabbit.web.user;
 
 import org.rabbit.entity.order.Order;
 import org.rabbit.service.redis.RedisService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,15 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * User controller
+ *
+ * @since 1.0.0
+ * @author nine
+ */
 @RestController
 @RequestMapping("user")
 public class UserController {
 
-	@Autowired
-	private RedisService redisService;
+	private final RedisService redisService;
 
-	@RequestMapping("add")
-	@ResponseBody
+	public UserController(RedisService redisService) {
+		this.redisService = redisService;
+	}
+
+	@PostMapping(value = "add")
 	public Object create() {
 		Order order = new Order();
 	    order.setAmount(new BigDecimal(100));

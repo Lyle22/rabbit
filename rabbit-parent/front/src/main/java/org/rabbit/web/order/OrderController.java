@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 订单中心控制类
+ * User Controller for Order
  * @author geestu
- *
  */
 @RestController
 @RequestMapping("order")
