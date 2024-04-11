@@ -31,6 +31,7 @@
 		<org.rabbit.service.version>0.0.1-SNAPSHOT</org.rabbit.service.version>
 		<org.rabbit.system-api.version>0.0.1-SNAPSHOT</org.rabbit.system-api.version>
 		<org.rabbit.front.version>0.0.1-SNAPSHOT</org.rabbit.front.version>
+		<org.rabbit.system-user.version>0.0.1-SNAPSHOT</org.rabbit.system-user.version>
 	</properties>
 
 	<modules>

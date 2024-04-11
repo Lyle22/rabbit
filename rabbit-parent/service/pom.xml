@@ -5,8 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>service</artifactId>
 	<name>service</name>
-	<url>http://maven.apache.org</url>
-
+	<version>${org.rabbit.service.version}</version>
 	<parent>
 		<groupId>org.rabbit</groupId>
 		<artifactId>rabbit-parent</artifactId>
@@ -15,12 +14,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.rabbit</groupId>
+			<groupId>org.rabbit</groupId>
 			<artifactId>common</artifactId>
 			<version>${org.rabbit.common.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.rabbit</groupId>
+			<groupId>org.rabbit</groupId>
 			<artifactId>entity</artifactId>
 			<version>${org.rabbit.entity.version}</version>
 		</dependency>
