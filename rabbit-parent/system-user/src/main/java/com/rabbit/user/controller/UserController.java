@@ -1,50 +1,36 @@
 package com.rabbit.user.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.rabbit.RedisConfig.RedisUtil;
+import com.rabbit.user.service.UserService;
 import org.rabbit.common.code.ResponseResult;
 import org.rabbit.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.rabbit.RedisConfig.RedisUtil;
-import com.rabbit.user.service.UserService;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/")
+@RequestMapping(value = "/users")
 public class UserController {
 
-	@Autowired
-	private UserService userService;
+	@Autowired	private UserService userService;
 	
-	@Autowired
-	private RedisUtil redisUtil;
+	@Autowired	private RedisUtil redisUtil;
 	
-	@ResponseBody
 	@RequestMapping("redis")
 	public Object redis(Model model) {
 		redisUtil.set("username", "正光", 10000);
 		return redisUtil.get("username");
 	}
 	
-	@ResponseBody
 	@RequestMapping("get")
 	public String getRedis(Model model) {
-		System.err.println(redisUtil.get("username"));
 		return redisUtil.get("username").toString();
 	}
 
-	@ResponseBody
 	@RequestMapping("page")
 	public Object selectPage(Model model) {
 		Page<User> page = new Page<User>(1, 10); // 1表示当前页，而10表示每页的显示显示的条目数
