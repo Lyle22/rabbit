@@ -11,13 +11,13 @@ import org.springframework.cache.annotation.EnableCaching;
 @EnableCaching
 public class FrontApplication {
 
-	protected final static Logger logger = LoggerFactory.getLogger(FrontApplication.class);
+	protected static final Logger logger = LoggerFactory.getLogger(FrontApplication.class);
 
 	public static void main(String[] args) {
 	        SpringApplication app = new SpringApplication(FrontApplication.class);
 	        app.setBannerMode(Banner.Mode.OFF);
 	        app.run(args);
-	        logger.info("FontApplication runing success!");
-	        System.err.println("Access URL : http://localhost:8099/user/test");
+	        logger.info("Font Application running success!");
+	        System.err.println("Access URL : http://localhost:1080/user/test");
 	    }
 }
