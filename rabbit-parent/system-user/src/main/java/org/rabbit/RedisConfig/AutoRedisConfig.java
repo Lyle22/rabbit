@@ -1,4 +1,4 @@
-package com.rabbit.RedisConfig;
+package org.rabbit.RedisConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

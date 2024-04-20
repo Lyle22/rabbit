@@ -1,4 +1,4 @@
-package com.rabbit.exception;
+package org.rabbit.exception;
 
 import javax.servlet.http.HttpServletRequest;
 

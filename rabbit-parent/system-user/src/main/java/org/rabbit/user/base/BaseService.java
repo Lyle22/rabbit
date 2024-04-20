@@ -1,4 +1,4 @@
-package com.rabbit.user.base;
+package org.rabbit.user.base;
 
 import java.util.List;
 

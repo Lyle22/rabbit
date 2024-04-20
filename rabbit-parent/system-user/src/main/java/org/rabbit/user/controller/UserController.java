@@ -1,9 +1,9 @@
-package com.rabbit.user.controller;
+package org.rabbit.user.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.rabbit.RedisConfig.RedisUtil;
-import com.rabbit.user.service.UserService;
-import com.rabbit.viewmodel.UserRequestDTO;
+import org.rabbit.RedisConfig.RedisUtil;
+import org.rabbit.user.service.UserService;
+import org.rabbit.viewmodel.UserRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.rabbit.common.code.ResponseResult;
 import org.rabbit.entity.user.User;

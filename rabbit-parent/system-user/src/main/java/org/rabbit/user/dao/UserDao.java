@@ -1,4 +1,4 @@
-package com.rabbit.user.dao;
+package org.rabbit.user.dao;
 
 import java.util.List;
 

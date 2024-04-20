@@ -45,7 +45,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.rabbit.UserApplication</mainClass>
+                    <mainClass>org.rabbit.UserApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

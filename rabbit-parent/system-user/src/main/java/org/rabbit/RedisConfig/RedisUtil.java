@@ -1,4 +1,4 @@
-package com.rabbit.RedisConfig;
+package org.rabbit.RedisConfig;
 
 import java.util.Arrays;
 import java.util.List;

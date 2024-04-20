@@ -1,4 +1,4 @@
-package com.rabbit.viewmodel;
+package org.rabbit.viewmodel;
 
 
 import lombok.Builder;

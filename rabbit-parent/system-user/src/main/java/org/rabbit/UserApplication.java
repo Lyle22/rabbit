@@ -1,4 +1,4 @@
-package com.rabbit;
+package org.rabbit;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

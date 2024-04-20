@@ -1,11 +1,11 @@
-package com.rabbit.user.service;
+package org.rabbit.user.service;
 
 import org.rabbit.entity.user.User;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.rabbit.user.dao.UserDao;
+import org.rabbit.user.dao.UserDao;
 
 
 @Service

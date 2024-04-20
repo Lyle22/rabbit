@@ -7,7 +7,7 @@ spring:
   datasource:
     driver: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/rabbit?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
-    username: docpal
+    username: nine
     password: password
   redis:
     database: 0  

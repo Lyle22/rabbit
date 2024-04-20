@@ -1,4 +1,4 @@
-package com.rabbit.exception;
+package org.rabbit.exception;
 
 import org.rabbit.common.base.BaseResult;
 
