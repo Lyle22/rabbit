@@ -3,16 +3,16 @@ package org.rabbit.login.security.authentication.common;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.rabbit.common.Result;
+import org.rabbit.common.contains.Result;
 import org.rabbit.login.config.AuthConfigs;
 import org.rabbit.login.contants.Authority;
-import org.rabbit.login.entity.User;
+import org.rabbit.login.entity.LoginUser;
 import org.rabbit.login.models.LoginAuthenticationStore;
 import org.rabbit.login.security.authentication.account.LoginAuthenticationDetails;
 import org.rabbit.login.security.authentication.auth2fa.Login2faAuthenticationDetails;
 import org.rabbit.login.security.jwtrefresh.JwtRefreshAuthenticationDetails;
 import org.rabbit.login.service.LoginAuthenticationStoreService;
-import org.rabbit.login.service.UserService;
+import org.rabbit.login.service.LoginUserService;
 import lombok.NonNull;
 import org.apache.commons.text.RandomStringGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     private final ObjectMapper mapper;
     private final AuthConfigs authConfigs;
-    private final UserService userService;
+    private final LoginUserService userService;
     private final LoginAuthenticationStoreService loginAuthenticationStoreService;
 
 
@@ -60,7 +60,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     public CustomAuthenticationSuccessHandler(
             final ObjectMapper mapper, AuthConfigs authConfigs,
             LoginAuthenticationStoreService loginAuthenticationStoreService,
-            UserService userService) {
+            LoginUserService userService) {
         this.mapper = mapper;
         this.authConfigs = authConfigs;
         this.loginAuthenticationStoreService = loginAuthenticationStoreService;
@@ -133,7 +133,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .sign(algorithm);
 
         // Write corresponding information to redis for token refresh purpose
-        User user = userService.get(username);
+        LoginUser user = userService.get(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
                         .loginSessionId(docPalAuthenticationSessionId)
@@ -181,7 +181,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String passcodeString = passcode.generate(6);
 
         // Write corresponding information to redis for token refresh purpose
-        User user = userService.get(username);
+        LoginUser user = userService.get(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
                         .loginSessionId(docPalAuthenticationSessionId)
@@ -241,7 +241,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .withClaim(Authority.SESSION_ID_KEY, docPalAuthenticationSessionId)
                 .sign(algorithm);
 
-        User user = userService.get(username);
+        LoginUser user = userService.get(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
                         .loginSessionId(docPalAuthenticationSessionId)

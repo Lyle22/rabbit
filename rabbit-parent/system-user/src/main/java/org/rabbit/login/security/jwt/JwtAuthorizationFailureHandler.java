@@ -1,7 +1,7 @@
 package org.rabbit.login.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.rabbit.common.Result;
+import org.rabbit.common.contains.Result;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;

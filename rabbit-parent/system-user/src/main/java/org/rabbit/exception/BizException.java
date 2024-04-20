@@ -5,6 +5,11 @@ import org.rabbit.common.base.BaseResult;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * business exception
+ *
+ * @author nine rabbit
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class BizException extends RuntimeException {

@@ -1,9 +1,8 @@
 package org.rabbit.login.config;
 
-import org.rabbit.common.Constants;
+import org.rabbit.common.contains.Constants;
 import org.rabbit.exception.AuthException;
-import org.rabbit.exception.ErrorCode;
-import org.rabbit.login.contants.AuthErrorCode;
+import org.rabbit.common.exception.ErrorCode;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

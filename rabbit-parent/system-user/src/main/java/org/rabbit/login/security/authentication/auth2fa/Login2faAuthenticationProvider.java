@@ -6,11 +6,11 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.rabbit.login.config.AuthConfigs;
 import org.rabbit.login.contants.Authority;
-import org.rabbit.login.entity.User;
+import org.rabbit.login.entity.LoginUser;
 import org.rabbit.login.models.LoginAuthenticationStore;
 import org.rabbit.login.security.authentication.auth2fa.exception.PasscodeNotMatchException;
 import org.rabbit.login.service.LoginAuthenticationStoreService;
-import org.rabbit.login.service.UserService;
+import org.rabbit.login.service.LoginUserService;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -36,9 +36,9 @@ public class Login2faAuthenticationProvider implements AuthenticationProvider {
 
     final AuthConfigs authConfigs;
     final LoginAuthenticationStoreService loginAuthenticationStoreService;
-    final UserService userService;
+    final LoginUserService userService;
 
-    public Login2faAuthenticationProvider(AuthConfigs authConfigs, LoginAuthenticationStoreService loginAuthenticationStoreService, UserService userService) {
+    public Login2faAuthenticationProvider(AuthConfigs authConfigs, LoginAuthenticationStoreService loginAuthenticationStoreService, LoginUserService userService) {
         this.authConfigs = authConfigs;
         this.loginAuthenticationStoreService = loginAuthenticationStoreService;
         this.userService = userService;
@@ -60,7 +60,7 @@ public class Login2faAuthenticationProvider implements AuthenticationProvider {
 
         // get login session id from redis
         String sessionId = decodedJWT.getClaim(Authority.SESSION_ID_KEY).asString();
-        User user = userService.getUserById(decodedJWT.getSubject());
+        LoginUser user = userService.getUserById(decodedJWT.getSubject());
         LoginAuthenticationStore loginAuthenticationStore = loginAuthenticationStoreService.getSession(sessionId, user.getId());
 
         if (loginAuthenticationStore == null) {

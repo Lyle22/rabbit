@@ -8,14 +8,14 @@ import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import org.rabbit.login.config.AuthConfigs;
 import org.rabbit.login.contants.Authority;
-import org.rabbit.login.entity.User;
+import org.rabbit.login.entity.LoginUser;
 import org.rabbit.login.models.LoginAuthenticationStore;
 import org.rabbit.login.security.authentication.account.LoginAuthenticationDetails;
 import org.rabbit.login.security.jwt.exception.JwtExpiredTokenException;
 import org.rabbit.login.security.jwt.exception.JwtTokenOtherException;
 import org.rabbit.login.security.jwt.exception.JwtTokenVerificationException;
 import org.rabbit.login.service.LoginAuthenticationStoreService;
-import org.rabbit.login.service.UserService;
+import org.rabbit.login.service.LoginUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -41,9 +41,9 @@ import static java.util.Arrays.stream;
 public class JwtAuthenticationProvider implements AuthenticationProvider {
     final AuthConfigs authConfigs;
     final LoginAuthenticationStoreService loginAuthenticationStoreService;
-    final UserService userService;
+    final LoginUserService userService;
 
-    public JwtAuthenticationProvider(AuthConfigs authConfigs, LoginAuthenticationStoreService loginAuthenticationStoreService, UserService userService) {
+    public JwtAuthenticationProvider(AuthConfigs authConfigs, LoginAuthenticationStoreService loginAuthenticationStoreService, LoginUserService userService) {
         this.authConfigs = authConfigs;
         this.loginAuthenticationStoreService = loginAuthenticationStoreService;
         this.userService = userService;
@@ -66,7 +66,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
             stream(roles).forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
 
             // Get Session ID from redis
-            User user = userService.get(decodedJWT.getSubject());
+            LoginUser user = userService.get(decodedJWT.getSubject());
             LoginAuthenticationStore authenticationStore = loginAuthenticationStoreService.getSession(docPalSessionId, user.getId());
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);

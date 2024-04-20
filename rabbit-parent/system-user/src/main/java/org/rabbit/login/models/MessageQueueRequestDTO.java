@@ -1,6 +1,6 @@
 package org.rabbit.login.models;
 
-import org.rabbit.common.BusinessCategory;
+import org.rabbit.common.enums.BusinessCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

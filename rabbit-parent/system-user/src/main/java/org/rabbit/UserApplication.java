@@ -6,9 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @author ninerabbit
+ */
 @SpringBootApplication
 @Slf4j
-@MapperScan("com.rabbit.*.dao")
+@MapperScan("org.rabbit.*.dao")
 public class UserApplication {
 	
 	public static void main(String[] args) {

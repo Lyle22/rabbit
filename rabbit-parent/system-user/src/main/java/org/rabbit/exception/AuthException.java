@@ -1,6 +1,7 @@
 package org.rabbit.exception;
 
 import lombok.Data;
+import org.rabbit.common.exception.ErrorCode;
 
 /**
  * The type Auth exception.

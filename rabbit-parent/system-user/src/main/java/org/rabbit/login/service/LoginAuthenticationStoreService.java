@@ -1,8 +1,8 @@
 package org.rabbit.login.service;
 
-import org.rabbit.common.RedisConstants;
+import org.rabbit.common.contains.RedisConstants;
 import org.rabbit.login.models.LoginAuthenticationStore;
-import org.rabbit.utils.JsonHelper;
+import org.rabbit.common.utils.JsonHelper;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

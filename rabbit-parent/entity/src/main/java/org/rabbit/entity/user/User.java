@@ -7,13 +7,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Tolerate;
 
+/**
+ * User entity
+ *
+ * @author ninerabbit
+ */
 @Data
 @Builder(toBuilder = true)
 @EqualsAndHashCode(callSuper = false)
 public class User extends BaseEntity{
 	
 	private String username;
-	
+
 	private String password;
 	
 	private String email;

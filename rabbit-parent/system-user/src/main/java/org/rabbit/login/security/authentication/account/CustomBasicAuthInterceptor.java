@@ -1,7 +1,7 @@
 package org.rabbit.login.security.authentication.account;
 
-import org.rabbit.common.ResponseEnum;
-import org.rabbit.exception.ClientException;
+import org.rabbit.common.contains.ResponseEnum;
+import org.rabbit.common.exception.ClientException;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

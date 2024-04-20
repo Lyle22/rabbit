@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.*;
 import lombok.experimental.Accessors;
 
-import javax.persistence.*;
 import java.time.Instant;
 
 /**
