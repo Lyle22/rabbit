@@ -13,8 +13,8 @@
 
     <properties>
         <java.version>11</java.version>
-        <spring-boot.version>2.7.7</spring-boot.version>
-        <flowable.version>6.7.2</flowable.version>
+        <spring-boot.version>2.7.18</spring-boot.version>
+        <flowable.version>6.8.1</flowable.version>
         <springdoc-openapi-ui.version>1.6.13</springdoc-openapi-ui.version>
         <jetbrains.annotations.version>23.1.0</jetbrains.annotations.version>
         <commons-collections4.version>4.4</commons-collections4.version>
