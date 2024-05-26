@@ -1,13 +1,12 @@
 package org.rabbit.entity.base;
 
-import java.util.Date;
-
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
-
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.util.Date;
 
 /**
  * 基础类
@@ -18,7 +17,7 @@ import lombok.experimental.Accessors;
 public class BaseEntity {
 	
 	@TableId
-	private Integer id;
+	private String id;
 	
 	@TableField("remarks")
 	private String remarks;

@@ -1,5 +1,6 @@
 package org.rabbit.service.mail.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.rabbit.common.contains.StatusValue;
 import org.rabbit.common.utils.JsonHelper;
@@ -16,7 +17,7 @@ import java.time.Instant;
  */
 @Slf4j
 @Service
-public class EmailLogService {
+public class EmailLogService extends ServiceImpl<EmailLogMapper, EmailLog> {
 
     private final EmailLogMapper emailLogMapper;
 

@@ -4,15 +4,15 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.rabbit.entity.user.User;
 import org.rabbit.login.config.AuthConfigs;
 import org.rabbit.login.contants.Authority;
-import org.rabbit.login.entity.LoginUser;
 import org.rabbit.login.models.LoginAuthenticationStore;
 import org.rabbit.login.security.authentication.auth2fa.exception.PasscodeNotMatchException;
 import org.rabbit.login.service.LoginAuthenticationStoreService;
-import org.rabbit.login.service.LoginUserService;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.rabbit.service.user.impl.LoginUserService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -60,7 +60,7 @@ public class Login2faAuthenticationProvider implements AuthenticationProvider {
 
         // get login session id from redis
         String sessionId = decodedJWT.getClaim(Authority.SESSION_ID_KEY).asString();
-        LoginUser user = userService.getUserById(decodedJWT.getSubject());
+        User user = userService.getById(decodedJWT.getSubject());
         LoginAuthenticationStore loginAuthenticationStore = loginAuthenticationStoreService.getSession(sessionId, user.getId());
 
         if (loginAuthenticationStore == null) {

@@ -6,9 +6,11 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
+import org.rabbit.entity.user.User;
 import org.rabbit.login.config.AuthConfigs;
 import org.rabbit.login.contants.Authority;
-import org.rabbit.login.entity.LoginUser;
 import org.rabbit.login.models.LoginAuthenticationStore;
 import org.rabbit.login.security.authentication.account.CustomBasicAuthInterceptor;
 import org.rabbit.login.security.jwt.JwtAuthenticationToken;
@@ -16,9 +18,8 @@ import org.rabbit.login.security.jwt.exception.JwtExpiredTokenException;
 import org.rabbit.login.security.jwt.exception.JwtTokenOtherException;
 import org.rabbit.login.security.jwt.exception.JwtTokenVerificationException;
 import org.rabbit.login.service.LoginAuthenticationStoreService;
-import org.rabbit.login.service.LoginUserService;
-import lombok.NonNull;
-import lombok.extern.slf4j.Slf4j;
+import org.rabbit.service.user.ILoginUserService;
+import org.rabbit.service.user.impl.LoginUserService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -46,7 +47,7 @@ public class JwtRefreshAuthenticationProvider implements AuthenticationProvider 
     private String appServerURL;
 
     final LoginAuthenticationStoreService loginAuthenticationStoreService;
-    final LoginUserService userService;
+    final ILoginUserService userService;
 
     public JwtRefreshAuthenticationProvider(AuthConfigs authConfigs, LoginAuthenticationStoreService loginAuthenticationStoreService, LoginUserService userService) {
         this.authConfigs = authConfigs;
@@ -63,7 +64,7 @@ public class JwtRefreshAuthenticationProvider implements AuthenticationProvider 
             DecodedJWT decodedJWT = verifier.verify(jwtAuthenticationToken.getToken());
             String oldSessionId = decodedJWT.getClaim(Authority.SESSION_ID_KEY).asString();
             // Get Session ID from Redis
-            LoginUser user = userService.get(decodedJWT.getSubject());
+            User user = userService.getById(decodedJWT.getSubject());
             LoginAuthenticationStore authenticationStore = loginAuthenticationStoreService.getSession(oldSessionId, user.getId());
             CustomBasicAuthInterceptor customBasicAuthInterceptor = new CustomBasicAuthInterceptor(authenticationStore.getAuthSessionId());
 

@@ -3,18 +3,18 @@ package org.rabbit.login.security.authentication.common;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.NonNull;
+import org.apache.commons.text.RandomStringGenerator;
 import org.rabbit.common.contains.Result;
+import org.rabbit.entity.user.User;
 import org.rabbit.login.config.AuthConfigs;
 import org.rabbit.login.contants.Authority;
-import org.rabbit.login.entity.LoginUser;
 import org.rabbit.login.models.LoginAuthenticationStore;
 import org.rabbit.login.security.authentication.account.LoginAuthenticationDetails;
 import org.rabbit.login.security.authentication.auth2fa.Login2faAuthenticationDetails;
 import org.rabbit.login.security.jwtrefresh.JwtRefreshAuthenticationDetails;
 import org.rabbit.login.service.LoginAuthenticationStoreService;
-import org.rabbit.login.service.LoginUserService;
-import lombok.NonNull;
-import org.apache.commons.text.RandomStringGenerator;
+import org.rabbit.service.user.impl.LoginUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -42,7 +42,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
-    private final ObjectMapper mapper;
+    private final ObjectMapper mapper = new ObjectMapper();
     private final AuthConfigs authConfigs;
     private final LoginUserService userService;
     private final LoginAuthenticationStoreService loginAuthenticationStoreService;
@@ -50,18 +50,12 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     /**
      * Instantiates a new Custom authentication success handler.
-     *
-     * @param mapper                          the mapper
-     * @param authConfigs
-     * @param loginAuthenticationStoreService
-     * @param userService
      */
     @Autowired
     public CustomAuthenticationSuccessHandler(
-            final ObjectMapper mapper, AuthConfigs authConfigs,
+            AuthConfigs authConfigs,
             LoginAuthenticationStoreService loginAuthenticationStoreService,
             LoginUserService userService) {
-        this.mapper = mapper;
         this.authConfigs = authConfigs;
         this.loginAuthenticationStoreService = loginAuthenticationStoreService;
         this.userService = userService;
@@ -133,7 +127,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .sign(algorithm);
 
         // Write corresponding information to redis for token refresh purpose
-        LoginUser user = userService.get(username);
+        User user = userService.getById(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
                         .loginSessionId(docPalAuthenticationSessionId)
@@ -181,7 +175,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         String passcodeString = passcode.generate(6);
 
         // Write corresponding information to redis for token refresh purpose
-        LoginUser user = userService.get(username);
+        User user = userService.getById(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
                         .loginSessionId(docPalAuthenticationSessionId)
@@ -192,11 +186,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                         .userId(user.getId())
                         .build());
         // Send Email
-//        mailSendService.sendText(MailSendRequest.builder()
-//                .to(email)
-//                .subject("Passcode from DocPal")
-//                .text(passcodeString)
-//                .build());
 
         Map<String, String> tokens = new HashMap<>();
         tokens.put("access_token", access_token);
@@ -241,7 +230,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .withClaim(Authority.SESSION_ID_KEY, docPalAuthenticationSessionId)
                 .sign(algorithm);
 
-        LoginUser user = userService.get(username);
+        User user = userService.getById(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
                         .loginSessionId(docPalAuthenticationSessionId)

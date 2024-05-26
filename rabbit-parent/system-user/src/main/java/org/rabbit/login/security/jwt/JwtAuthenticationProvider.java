@@ -6,18 +6,18 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.rabbit.entity.user.User;
 import org.rabbit.login.config.AuthConfigs;
 import org.rabbit.login.contants.Authority;
-import org.rabbit.login.entity.LoginUser;
 import org.rabbit.login.models.LoginAuthenticationStore;
 import org.rabbit.login.security.authentication.account.LoginAuthenticationDetails;
 import org.rabbit.login.security.jwt.exception.JwtExpiredTokenException;
 import org.rabbit.login.security.jwt.exception.JwtTokenOtherException;
 import org.rabbit.login.security.jwt.exception.JwtTokenVerificationException;
 import org.rabbit.login.service.LoginAuthenticationStoreService;
-import org.rabbit.login.service.LoginUserService;
-import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
+import org.rabbit.service.user.impl.LoginUserService;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -66,7 +66,7 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
             stream(roles).forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
 
             // Get Session ID from redis
-            LoginUser user = userService.get(decodedJWT.getSubject());
+            User user = userService.getById(decodedJWT.getSubject());
             LoginAuthenticationStore authenticationStore = loginAuthenticationStoreService.getSession(docPalSessionId, user.getId());
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);

@@ -1,6 +1,7 @@
 package org.rabbit.service.mail.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -27,7 +28,7 @@ import java.util.Map;
  */
 @Slf4j
 @Service
-public class EmailTemplateService {
+public class EmailTemplateService extends ServiceImpl<EmailTemplateMapper, EmailTemplate> {
 
     public static final String EMAIL_TEMPLATE_ID_PREFIX = "notification.";
     private final EmailTemplateMapper emailTemplateMapper;

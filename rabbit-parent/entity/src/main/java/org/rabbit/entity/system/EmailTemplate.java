@@ -1,6 +1,7 @@
 package org.rabbit.entity.system;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -15,6 +16,7 @@ import java.time.Instant;
 @Builder(toBuilder = true)
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@TableName("email_template")
 public class EmailTemplate {
 
     private String id;
