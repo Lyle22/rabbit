@@ -1,9 +1,8 @@
 package org.rabbit.login.security.jwtrefresh;
 
+import lombok.extern.slf4j.Slf4j;
 import org.rabbit.login.security.jwt.JwtAuthenticationToken;
 import org.rabbit.login.security.jwt.exception.JwtTokenMissingException;
-import com.sun.istack.NotNull;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -15,6 +14,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.constraints.NotNull;
 import java.io.IOException;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;

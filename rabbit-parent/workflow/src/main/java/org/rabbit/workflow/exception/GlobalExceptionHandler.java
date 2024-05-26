@@ -2,6 +2,7 @@ package org.rabbit.workflow.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import org.rabbit.common.contains.Result;
+import org.rabbit.exception.MyControllerAdvice;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  */
 @ControllerAdvice
 @Slf4j
-public class GlobalExceptionHandler {
+public class GlobalExceptionHandler extends MyControllerAdvice {
 
     /**
      * Provide global error handling for all controller

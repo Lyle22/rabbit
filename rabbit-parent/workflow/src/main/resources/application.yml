@@ -1,0 +1,31 @@
+server:
+    port: 8085
+    servlet:
+        context-path: /workflow
+
+spring:
+  datasource:
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rabbit?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: nine
+    password: password
+      
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: org.rabbit.entity  
+  #typeEnumsPackage: org.rabbit.enum
+  global-config:
+    db-config:
+      id-type: auto
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      #逻辑删除配置
+      logic-delete-value: 0
+      logic-not-delete-value: 1
+      db-type: mysql
+    refresh: false
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false

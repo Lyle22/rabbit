@@ -16,6 +16,6 @@ public class UserApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(UserApplication.class, args);
-		log.info(" -------> 用户模块启动成功 ");
+		log.info(" -------> Starting user model application...");
 	}
 }

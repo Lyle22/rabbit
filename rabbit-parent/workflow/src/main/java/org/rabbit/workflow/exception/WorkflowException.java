@@ -5,6 +5,7 @@ import org.rabbit.common.exception.ErrorCode;
 
 /**
  * The type of custom exception.
+ * @author Lyle
  */
 @Data
 public class WorkflowException extends RuntimeException {
