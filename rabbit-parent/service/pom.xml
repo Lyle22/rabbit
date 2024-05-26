@@ -36,6 +36,12 @@
 			<version>${org.rabbit.entity.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.rabbit</groupId>
+			<artifactId>configure</artifactId>
+			<version>${org.rabbit.configure.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>

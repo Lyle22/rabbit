@@ -1,11 +1,11 @@
 package org.rabbit.login.config;
 
-import org.rabbit.login.models.MessageQueueRequestDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.rabbit.login.models.MessageQueueRequestDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.connection.stream.ObjectRecord;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.hash.ObjectHashMapper;
@@ -18,6 +18,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * @author Lyle
+ */
 @Slf4j
 @Configuration
 public class RedisStreamConfig {
@@ -41,8 +44,7 @@ public class RedisStreamConfig {
         return executor;
     }
 
-    private StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, ObjectRecord<String,
-            MessageQueueRequestDTO>> getOptions() {
+    private StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, ObjectRecord<String, MessageQueueRequestDTO>> getOptions() {
         return
                 StreamMessageListenerContainer.StreamMessageListenerContainerOptions
                         .builder()
@@ -68,7 +70,7 @@ public class RedisStreamConfig {
     }
 
     @Bean(initMethod = "start", destroyMethod = "stop")
-    public StreamMessageListenerContainer<String, ObjectRecord<String, MessageQueueRequestDTO>> streamMessageListenerContainer(RedisConnectionFactory redisConnectionFactory) {
+    public StreamMessageListenerContainer<String, ObjectRecord<String, MessageQueueRequestDTO>> streamMessageListenerContainer(LettuceConnectionFactory redisConnectionFactory) {
         StreamMessageListenerContainer.StreamMessageListenerContainerOptions<String, ObjectRecord<String,
                 MessageQueueRequestDTO>> options = getOptions();
 

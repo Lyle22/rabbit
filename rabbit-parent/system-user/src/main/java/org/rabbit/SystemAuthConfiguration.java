@@ -39,7 +39,7 @@ public class SystemAuthConfiguration {
         REFRESH_TOKEN_URL = refreshTokenUrl;
     }
 
-    @Value("${authentication.public.url}")
+    @Value("${authentication.public.url:/public/**}")
     private void setAuthenticationPublicUrl(String authenticationPublicUrl) {
         AUTHENTICATION_PUBLIC_URL = authenticationPublicUrl;
     }

@@ -1,18 +1,12 @@
 package org.rabbit.entity;
 
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
-import com.baomidou.mybatisplus.generator.config.*;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
 public class CodeGenerator {
@@ -37,14 +31,14 @@ public class CodeGenerator {
     }
 
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/nine?useSSL=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
-        String username = "root";
-        String password = "root";
+        String url = "jdbc:mysql://localhost:3306/rabbit?useSSL=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
+        String username = "nine";
+        String password = "password";
         String projectPath = System.getProperty("user.dir");
 
         FastAutoGenerator.create(url, username, password)
                 .globalConfig(builder -> {
-                    builder.author("username") // 设置作者
+                    builder.author("nine") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
                             .outputDir(projectPath + "/entity/src/main/java"); // 指定输出目录

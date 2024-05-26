@@ -1,34 +1,32 @@
 package org.rabbit.service.mail.models;
 
-import lombok.Builder;
+import lombok.AccessLevel;
 import lombok.Data;
-import lombok.NonNull;
+import lombok.experimental.FieldDefaults;
 
 import java.io.File;
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 /**
- * @author weltuser
+ *  Request parameters for sending email
  */
 @Data
-@Builder
-public class SendEmailParam implements Serializable {
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class SendEmailParam {
 
-    String fromEmail;
-    /**
-     * the id of email template
-     **/
-    String templateId;
+    public enum EmailMimeType {
+        TEXT, HTML, UNEXPECTED
+    }
 
-    @NonNull
-    List<String> tos;
+    EmailMimeType mimeType;
 
     /**
-     * the cc-receiver of emails
+     * email sender
+     *
+     * <p>Designated mail send service, </p>
+     * <p>If null then use the default service of MailSendService </p>
      */
-    List<String> ccs;
+    String fromEmail;
 
     /**
      * the subject of email
@@ -38,16 +36,28 @@ public class SendEmailParam implements Serializable {
     /**
      * the body Text of email
      */
-    String text;
+    String mainBodyText;
 
     /**
-     * extra parameters
+     * the receiver of emails
      */
-    Map<String, Object> variables;
+    List<String> tos;
 
     /**
-     * the file list
+     * the cc-receiver of emails
+     */
+    List<String> ccs;
+
+    /**
+     * the bcc-receiver of emails
+     */
+    List<String> bcc;
+
+    /**
+     * the attachment files
      */
     List<File> files;
+
+    String accessToken;
 
 }

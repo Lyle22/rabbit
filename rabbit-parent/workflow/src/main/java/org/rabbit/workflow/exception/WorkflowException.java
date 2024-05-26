@@ -4,7 +4,7 @@ import lombok.Data;
 import org.rabbit.common.exception.ErrorCode;
 
 /**
- * The type Doc pal custom exception.
+ * The type of custom exception.
  */
 @Data
 public class WorkflowException extends RuntimeException {
@@ -14,7 +14,7 @@ public class WorkflowException extends RuntimeException {
     private StackTraceElement[] stackTraceElements;
 
     /**
-     * Instantiates a new Doc pal custom exception.
+     * Instantiates a new  custom exception.
      *
      * @param errorCode          the error code
      * @param errorMessage       the error message
@@ -27,7 +27,7 @@ public class WorkflowException extends RuntimeException {
     }
 
     /**
-     * Instantiates a new Doc pal custom exception.
+     * Instantiates a new  custom exception.
      *
      * @param errorCode    the error code
      * @param errorMessage the error message

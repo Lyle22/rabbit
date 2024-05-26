@@ -1,12 +1,12 @@
 package org.rabbit;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import org.rabbit.login.security.ErrorAuthenticationEntryPoint;
 import org.rabbit.login.security.authentication.account.LoginAuthenticationFilter;
 import org.rabbit.login.security.authentication.account.LoginAuthenticationProvider;
 import org.rabbit.login.security.authentication.common.CustomAuthenticationFailureHandler;
-import org.rabbit.login.security.authentication.outlink.OutLinkAuthenticationFilter;
-import org.rabbit.login.security.authentication.outlink.OutLinkAuthenticationProvider;
 import org.rabbit.login.security.authentication.publics.PublicAuthenticationFilter;
 import org.rabbit.login.security.authentication.publics.PublicAuthenticationProvider;
 import org.rabbit.login.security.jwt.JwtAuthenticationProvider;
@@ -16,8 +16,6 @@ import org.rabbit.login.security.jwt.SkipPathRequestMatcher;
 import org.rabbit.login.security.jwtrefresh.JwtRefreshAuthenticationFailureHandler;
 import org.rabbit.login.security.jwtrefresh.JwtRefreshAuthenticationProvider;
 import org.rabbit.login.security.jwtrefresh.JwtRefreshAuthorizationFilter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -62,8 +60,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final @NonNull JwtAuthenticationProvider jwtAuthenticationProvider;
     private final @NonNull JwtRefreshAuthenticationProvider jwtRefreshAuthenticationProvider;
     private final @NonNull PublicAuthenticationProvider publicAuthenticationProvider;
-    private final @NonNull OutLinkAuthenticationProvider outgoingLinkAuthenticationProvider;
-
     private final @NonNull ErrorAuthenticationEntryPoint errorAuthenticationEntryPoint;
     private final @NonNull AuthenticationSuccessHandler authenticationSuccessHandler;
     private final @NonNull CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
@@ -89,8 +85,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(this.jwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(this.jwtRefreshAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(this.publicAuthenticationFilter(SystemAuthConfiguration.AUTHENTICATION_PUBLIC_URL), UsernamePasswordAuthenticationFilter.class);
-        http.addFilterBefore(this.outLinkAuthenticationFilter(SystemAuthConfiguration.OUT_LINK_URL), UsernamePasswordAuthenticationFilter.class);
-
     }
 
     @Bean
@@ -122,7 +116,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(jwtAuthenticationProvider);
         auth.authenticationProvider(jwtRefreshAuthenticationProvider);
         auth.authenticationProvider(publicAuthenticationProvider);
-        auth.authenticationProvider(outgoingLinkAuthenticationProvider);
     }
 
     @Bean
@@ -179,23 +172,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         );
         SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(permitJWTEndpointList, pattern);
         PublicAuthenticationFilter filter = new PublicAuthenticationFilter(
-                customAuthenticationFailureHandler, matcher);
-        filter.setAuthenticationManager(super.authenticationManager());
-        return filter;
-    }
-
-    protected OutLinkAuthenticationFilter outLinkAuthenticationFilter(String pattern) throws Exception {
-        final List<String> pathsToSkip = Arrays.asList(
-                SystemAuthConfiguration.AUTHENTICATION_LOGIN_URL,
-                SystemAuthConfiguration.REFRESH_TOKEN_URL,
-                SystemAuthConfiguration.AUTHENTICATION_PUBLIC_URL,
-                SystemAuthConfiguration.SWAGGER_WHITELIST_URL,
-                SystemAuthConfiguration.PASSWORD_CONFIRMRESET_URI,
-                SystemAuthConfiguration.PASSWORD_FORGET_URI,
-                SystemAuthConfiguration.PASSWORD_RESET_URI
-        );
-        SkipPathRequestMatcher matcher = new SkipPathRequestMatcher(pathsToSkip, pattern);
-        OutLinkAuthenticationFilter filter = new OutLinkAuthenticationFilter(
                 customAuthenticationFailureHandler, matcher);
         filter.setAuthenticationManager(super.authenticationManager());
         return filter;

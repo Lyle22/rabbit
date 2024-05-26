@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -13,11 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-/**
- * the class that implements send mail
- *
- * @author ninerabbit
- */
 @Data
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -35,6 +29,7 @@ public class MailSendRequest {
      * the receiver of email
      */
     String to;
+
     /**
      * the receiver of emails
      */
@@ -44,11 +39,14 @@ public class MailSendRequest {
      * the cc-receiver of emails
      */
     List<String> ccs;
+    /**
+     * the bcc-receiver of emails
+     */
+    List<String> bcc;
 
     /**
      * the subject of email
      */
-    @NotNull
     String subject;
     /**
      * the body Text of email
@@ -74,7 +72,7 @@ public class MailSendRequest {
             tos = new ArrayList<>();
         }
         if (StringUtils.isNotBlank(getTo())) {
-            tos.add(getTo());
+            tos.add(to);
         }
         tos = tos.stream().distinct().collect(Collectors.toList());
         return tos;
@@ -86,6 +84,14 @@ public class MailSendRequest {
         }
         ccs = ccs.stream().distinct().collect(Collectors.toList());
         return ccs;
+    }
+
+    public List<String> getBcc() {
+        if (bcc == null || bcc.size() == 0) {
+            bcc = new ArrayList<>();
+        }
+        bcc = bcc.stream().distinct().collect(Collectors.toList());
+        return bcc;
     }
 
 }

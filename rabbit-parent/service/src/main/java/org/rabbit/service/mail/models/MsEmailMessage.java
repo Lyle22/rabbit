@@ -18,6 +18,8 @@ public class MsEmailMessage {
 
     public List<MsRecipient> ccRecipients;
 
+    public List<MsRecipient> bccRecipients;
+
     public LinkedList<MsEmailAttachment> attachments;
 
 }

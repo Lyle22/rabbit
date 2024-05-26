@@ -4,7 +4,7 @@
         xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>system-user</artifactId>
-    <name>User Module</name>
+    <name>system-user</name>
     <version>${org.rabbit.system-user.version}</version>
     <parent>
         <groupId>org.rabbit</groupId>
@@ -25,6 +25,16 @@
             <groupId>org.rabbit</groupId>
             <artifactId>entity</artifactId>
             <version>${org.rabbit.entity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.rabbit</groupId>
+            <artifactId>configure</artifactId>
+            <version>${org.rabbit.configure.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.rabbit</groupId>
+            <artifactId>service</artifactId>
+            <version>${org.rabbit.service.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

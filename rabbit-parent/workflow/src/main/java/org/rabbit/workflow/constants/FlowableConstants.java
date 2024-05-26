@@ -2,6 +2,9 @@ package org.rabbit.workflow.constants;
 
 import lombok.experimental.UtilityClass;
 
+/**
+ * @author Lyle
+ */
 @UtilityClass
 public class FlowableConstants {
 

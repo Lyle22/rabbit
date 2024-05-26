@@ -25,7 +25,9 @@ public enum ErrorCode {
     /**
      * Jwt token invalid error code.
      */
-    JWT_TOKEN_INVALID(402);
+    JWT_TOKEN_INVALID(402),
+
+    WORKFLOW(700);
 
     private final int errorCode;
 

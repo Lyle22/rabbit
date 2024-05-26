@@ -1,11 +1,5 @@
 package org.rabbit.entity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-
 public class CodeGeneration {
 
     private String pathSplit = "/";
@@ -21,13 +15,13 @@ public class CodeGeneration {
 
     private String jdbcUrl = "jdbc:mysql://localhost:3306/rabbit?useUnicode=true&characterEncoding=utf-8";
 
-    private String username = "root";
+    private String username = "nine";
 
-    private String password = "123456";
+    private String password = "password";
 
     private String driverName = "org.mariadb.jdbc.Driver";
 
-    private String author = "zhengguang";
+    private String author = "nine";
 
     /**
      * 上级包名
@@ -37,11 +31,13 @@ public class CodeGeneration {
     /**
      * 末层子包名
      */
-    private String moduleName = "comment";
+    private String moduleName = "mail";
 
     private String[] tablePrefix = {"rb_"};
 
-    private String[] includeTable = {"rb_comment"};
+    private String[] includeTable = {"email_layout",             "email_log" ,
+            "email_template" ,
+            "email_template_relationship"};
 
     /**
      * MySQL 生成演示

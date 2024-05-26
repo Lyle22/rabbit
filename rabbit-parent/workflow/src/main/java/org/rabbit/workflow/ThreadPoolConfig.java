@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 公用线程池配置
  *
- * @author weltuser
+ * @author Lyle
  */
 @Slf4j
 @EnableAsync

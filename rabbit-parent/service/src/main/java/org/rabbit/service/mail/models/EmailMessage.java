@@ -10,6 +10,6 @@ public class EmailMessage {
 
     Message message;
 
-    boolean saveToSentItems;
+    String saveToSentItems;
 
 }
