@@ -40,8 +40,6 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
      */
     public Order create(Order orderHeader) {
         orderHeader.setStatus(OrderStatus.UNPAID);
-        orderHeader.setUpdateDate(new Date());
-        orderHeader.setCreateDate(new Date());
         orderHeader.setDelFlag(0);
         orderDao.insert(orderHeader);
         orderHeader.setOrderNumber(DateFormatUtils.format(new Date(), "yyyyMMdd") + orderHeader.getId());

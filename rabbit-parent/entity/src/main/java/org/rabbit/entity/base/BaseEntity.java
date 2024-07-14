@@ -1,22 +1,24 @@
 package org.rabbit.entity.base;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.*;
 import lombok.Data;
-import lombok.experimental.Accessors;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.Instant;
 
 /**
  * 基础类
- * 
+ *
+ * @author Lyle
  */
 @Data
-@Accessors(chain = true)
-public class BaseEntity {
-	
-	@TableId
+public class BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@TableId(type = IdType.AUTO)
 	private String id;
 	
 	@TableField("remarks")
@@ -26,16 +28,24 @@ public class BaseEntity {
 	@TableLogic
 	private Integer delFlag;
 
-	@TableField("create_date")
-	private Date createDate;
-	
-	@TableField("create_by")
-	private String createBy;
-	
-	@TableField("update_by")
-	private String updateBy;
-	
-	@TableField("update_date")
-	private Date updateDate;
+	@TableField(value = "created_by")
+	@Getter
+	@Setter
+	private String createdBy;
+
+	@TableField(value = "modified_by")
+	@Getter
+	@Setter
+	private String modifiedBy;
+
+	@TableField(value = "created_date", fill = FieldFill.INSERT)
+	@Getter
+	@Setter
+	private Instant createdDate;
+
+	@TableField(value = "modified_date", fill = FieldFill.INSERT_UPDATE)
+	@Getter
+	@Setter
+	private Instant modifiedDate;
 
 }
