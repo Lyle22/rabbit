@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @SpringBootApplication
 @Slf4j
-@MapperScan("org.rabbit.service.*.dao")
+@MapperScan({"org.rabbit.service.*.dao","org.rabbit.service.*.mapper"})
 public class UserApplication {
 	
 	public static void main(String[] args) {

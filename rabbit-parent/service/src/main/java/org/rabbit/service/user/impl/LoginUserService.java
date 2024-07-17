@@ -14,4 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginUserService extends ServiceImpl<UserMapper, User> implements ILoginUserService {
 
+
+    @Override
+    public User getCurrentUserDTO() {
+        return null;
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return null;
+    }
 }

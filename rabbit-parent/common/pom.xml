@@ -6,8 +6,20 @@
 	<artifactId>common</artifactId>
 	<name>common</name>
 	<url>http://maven.apache.org</url>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-	<parent>
+    <parent>
 		<groupId>org.rabbit</groupId>
 		<artifactId>rabbit-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>

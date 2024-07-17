@@ -1,5 +1,5 @@
 server:
-    port: 1081
+    port: 9091
     servlet:
         context-path: /user
 

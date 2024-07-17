@@ -8,4 +8,7 @@ import org.rabbit.entity.user.User;
  **/
 public interface ILoginUserService extends IService<User> {
 
+    User getCurrentUserDTO();
+
+    User getCurrentUser();
 }

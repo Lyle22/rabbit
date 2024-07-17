@@ -12,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication(proxyBeanMethods = false)
 @Slf4j
-@MapperScan("org.rabbit.service.*.dao")
+@MapperScan({"org.rabbit.service.*.dao","org.rabbit.service.*.mapper"})
 public class WorkflowApplication {
 
     /**

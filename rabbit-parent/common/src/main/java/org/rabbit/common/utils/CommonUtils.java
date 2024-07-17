@@ -2,6 +2,11 @@ package org.rabbit.common.utils;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommonUtils {
@@ -50,16 +55,72 @@ public class CommonUtils {
         return sb;
     }
 
-    public static void main(String[] args) {
-        String ss = "Read";
-        String s1 = "Read Folder";
-        String s2 = "Read-SL";
-        String s3 = "Read_GH";
-        String s4 = "Read123";
-        System.out.println(ss + " > " + isAlpha(ss));
-        System.out.println(s1 + " > " + isAlpha(s1));
-        System.out.println(s2 + " > " + isAlpha(s2));
-        System.out.println(s3 + " > " + isAlpha(s3));
-        System.out.println(s4 + " > " + isAlpha(s4));
+    /**
+     * Determine whether it contains special characters
+     *
+     * @param str the characters
+     * @return return true if contains
+     */
+    public static boolean isSpecialChar(String str) {
+        String regEx = "[`!@#$%^&*+=|{}':;',\\[\\].<>/?！@#￥%……&*+|{}【】‘；：”“’。，、？]|\n|\r|\t";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.find();
+    }
+
+    public static String replaceSpecialChar(String str) {
+        String regEx = "[`!@#$%^&*()+=|{}':;',//[//].<>/?！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.replaceAll("").trim().replaceAll(" ", "_");
+    }
+
+    public static boolean checkSpecialChar(String str) {
+        String regEx = "[^\\w\\d\\s]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(str);
+        return m.find();
+    }
+
+    /**
+     * 以某一个字符来分割，讲字符串转换成驼峰命名方式
+     *
+     * @param name 分割字符
+     * @return 驼峰命名方式的字符串
+     */
+    public static String toCamelCase(String name, String charStr) {
+        StringBuilder result = new StringBuilder();
+        String[] words = name.split(charStr);
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (i == 0) {
+                result.append(word);
+            } else {
+                result.append(word.substring(0, 1).toUpperCase()).append(word.substring(1));
+            }
+        }
+        return result.toString();
+    }
+
+    public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
+    }
+
+    private static final Pattern PATTERN_NUMERIC = Pattern.compile("^-?\\d+(\\.\\d+)?$");
+
+    public static boolean isNumeric(String str) {
+        Matcher isNum = PATTERN_NUMERIC.matcher(str);
+        return isNum.matches();
+    }
+
+    public static int largestNumber(int[] arr) {
+        int max = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
     }
 }

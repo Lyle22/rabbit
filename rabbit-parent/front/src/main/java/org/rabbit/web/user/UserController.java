@@ -4,11 +4,9 @@ import org.rabbit.entity.order.Order;
 import org.rabbit.service.redis.RedisService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * User controller
@@ -31,7 +29,6 @@ public class UserController {
 		Order order = new Order();
 	    order.setAmount(new BigDecimal(100));
 		order.setBuyNum(new BigDecimal(1));
-		order.setCreateDate(new Date());
 		order.setOrderNumber("100000000000");
 		redisService.set("list", order);
 		return redisService.get("list");

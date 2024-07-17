@@ -1,5 +1,8 @@
 package org.rabbit.common.utils;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateUtils;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,7 +16,42 @@ public class DateUtil {
 	public static String TIMEFORMAT = "yyyy-MM-dd HH:mm:ss";
 	public static String DATEFORMAT = "yyyy-MM-dd";
 	public static String DATEFORMAT2 = "yyyy/MM/dd";
+	public static String DATEFORMAT3 = "yyyyMMdd";
+	public static String MINUTE_FORMAT = "yyyy-MM-dd HH:mm";
+	public static String MINUTE_FORMAT2 = "yyyy/MM/dd HH:mm";
+	public static String SECOND_FORMAT3 = "yyyy-MM-dd'T'HH:mm:ssZ";
+	public static String SECOND_FORMAT4 = "yyyy-MM-dd'T'HH:mm";
+	public static String SECOND_FORMAT5 = "yyyy-MM-dd'T'HH:mm:ss";
+	public static String NAXUEFORMAT3 = "yyyy-MM-dd'T'HH:mm:ss.SSS Z";
+	public static String NAXUEFORMAT2 = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 	public static String NAXUEFORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
+	public static String SECOND_FORMAT = "yyyy-MM-dd HH:mm:ss";
+	public static String SECOND_FORMAT2 = "yyyy/MM/dd HH:mm:ss";
+
+	public static String MYSQL_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+	public static String[] PARSE_PATTERNS = {
+			TIMEFORMAT, DATEFORMAT, "yyyy年MM月dd日",
+			DATEFORMAT2, DATEFORMAT3,
+			SECOND_FORMAT, SECOND_FORMAT2, SECOND_FORMAT3,
+			MINUTE_FORMAT, MINUTE_FORMAT2, SECOND_FORMAT4, SECOND_FORMAT5,
+			NAXUEFORMAT, NAXUEFORMAT2, NAXUEFORMAT3,
+			"yyyy-MM-dd HH:mm:ss.SSSSSS", "yyyy/MM/dd HH:mm:ss.SSSSSS", "yyyyMMdd HH:mm:ss.SSSSSS"
+	};
+
+	public static Date formatDate(String eventDate) {
+		if (StringUtils.isNumeric(eventDate)) {
+			Timestamp tms = new Timestamp(Long.parseLong(eventDate));
+			Date date = new Date(tms.getTime());
+			return DateUtil.convertSqlDate(date);
+		} else {
+			try {
+				return DateUtils.parseDate(eventDate, PARSE_PATTERNS);
+			} catch (ParseException e) {
+				System.out.println("Failed to parse Log Event Date:: " + eventDate);
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * 把日期字符串格式化成日期类型

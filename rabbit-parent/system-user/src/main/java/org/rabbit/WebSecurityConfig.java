@@ -78,6 +78,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 // Our public endpoints
                 .antMatchers(HttpMethod.POST, SystemAuthConfiguration.AUTHENTICATION_LOGIN_URL).permitAll()
+                .antMatchers("/workflow/**").permitAll()
                 // Our private endpoints
                 .anyRequest().authenticated();
 
