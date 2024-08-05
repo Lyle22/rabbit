@@ -254,7 +254,13 @@
 			<version>2.9.2</version>
 		</dependency>
 
-<!--		<dependency>-->
+		<dependency>
+			<groupId>io.swagger.core.v3</groupId>
+			<artifactId>swagger-annotations</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+
+		<!--		<dependency>-->
 <!--			<groupId>org.flowable</groupId>-->
 <!--			<artifactId>flowable-spring-boot-starter-rest</artifactId>-->
 <!--			<version>${flowable.version}</version>-->
