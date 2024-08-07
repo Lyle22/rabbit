@@ -41,8 +41,8 @@ public class GenerateCode {
      */
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/nine?useSSL=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
-        String username = "root";
-        String password = "root";
+        String username = "docpal";
+        String password = "password";
         String projectPath = System.getProperty("user.dir");
 
         FastAutoGenerator.create(url, username, password)
@@ -50,17 +50,17 @@ public class GenerateCode {
                     builder.author("username") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
                             .fileOverride() // 覆盖已生成文件
-                            .outputDir(projectPath + "/config-core/src/main/java"); // 指定输出目录
+                            .outputDir(projectPath + "/entity/src/main/java"); // 指定输出目录
                 })
                 .packageConfig(builder -> {
                     builder.parent("com.baomidou.mybatisplus.samples.generator") // 设置父包名
-                            .moduleName(scanner("模块名")) // 设置父包模块名
+                            .moduleName(scanner("设置父包模块名")) // 设置父包模块名
                             .pathInfo(Collections.singletonMap(
                                     OutputFile.xml, projectPath + "\\config-core\\src\\main\\java\\mapper")
                             ); // 设置mapperXml生成路径
                 })
                 .strategyConfig(builder -> {
-                    builder.addInclude(scanner("system_setting")) // 设置需要生成的表名
+                    builder.addInclude(scanner("设置需要生成的表名")) // 设置需要生成的表名
                             .addTablePrefix("t_", "c_"); // 设置过滤表前缀
                 })
                 .templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板
