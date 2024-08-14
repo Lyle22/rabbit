@@ -1,15 +1,16 @@
 package org.rabbit.workflow.service.bpmn;
 
+import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.flowable.bpmn.model.Process;
 import org.flowable.bpmn.model.*;
 import org.flowable.engine.ProcessEngine;
-import org.flowable.engine.ProcessEngines;
-import org.flowable.engine.RepositoryService;
-import org.flowable.engine.RuntimeService;
-import org.flowable.engine.repository.Deployment;
-import org.flowable.engine.runtime.ProcessInstance;
+import org.rabbit.workflow.models.SourceTargetDTO;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author nine rabbit
@@ -26,49 +27,82 @@ public class CreateBpmnModelHandler {
      * @param processDefinitionKey The key of the process definition.
      * @return The created BpmnModel instance.
      */
-    public BpmnModel createProcessDefinition(String processDefinitionKey) {
+    public static BpmnModel createProcessDefinition(String processDefinitionKey) {
+        List<SourceTargetDTO> sequenceFlows = Lists.newArrayList();
         BpmnModel model = new BpmnModel();
         Process process = new Process();
-        process.addFlowElement(new StartEvent("startEvent"));
-        ServiceTask serviceTask = new ServiceTask("serviceTask");
-        serviceTask.setImplementationType("class");
-        serviceTask.setImplementation(this.getClass().getName() + "#checkExistence");
+        StartEvent startEvent = new StartEvent();
+        process.addFlowElement(startEvent);
+
+        ServiceTask serviceTask = createServiceTask(ImplementationType.IMPLEMENTATION_TYPE_CLASS, "checkExistence");
         process.addFlowElement(serviceTask);
 
-        ExclusiveGateway exclusiveGateway = new ExclusiveGateway("exclusiveGateway");
-        exclusiveGateway.setDefaultFlow("defaultFlow");
-        process.addFlowElement(exclusiveGateway);
-
-        EndEvent endEvent = new EndEvent("endEvent");
+        EndEvent endEvent = new EndEvent();
         process.addFlowElement(endEvent);
 
-        SequenceFlow sequenceFlowTrue = new SequenceFlow("sequenceFlowTrue", "serviceTask", "exclusiveGateway");
-        sequenceFlowTrue.setConditionExpression("${isExists('testIdentifier')}");
-        process.addFlowElement(sequenceFlowTrue);
+        sequenceFlows.add(SourceTargetDTO.add(startEvent.getId(), serviceTask.getId()));
+        sequenceFlows.add(SourceTargetDTO.add(serviceTask.getId(), endEvent.getId()));
+        setSequenceFlows(process, sequenceFlows);
 
-        SequenceFlow defaultFlow = new SequenceFlow("defaultFlow", "exclusiveGateway", "endEvent");
-        process.addFlowElement(defaultFlow);
-
+        process.setId(processDefinitionKey);
+        process.setName(processDefinitionKey);
         model.addProcess(process);
         return model;
     }
 
 
-    /**
-     * Deploys the created process definition and starts a process instance.
-     */
-    public void deployAndStartProcess() {
-        processEngine = ProcessEngines.getDefaultProcessEngine();
-
-        RepositoryService repositoryService = processEngine.getRepositoryService();
-        BpmnModel bpmnModel = createProcessDefinition("DynamicProcess");
-        Deployment deployment = repositoryService.createDeployment()
-                .addBpmnModel("DynamicProcess.bpmn20.xml", bpmnModel)
-                .deploy();
-        RuntimeService runtimeService = processEngine.getRuntimeService();
-        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("DynamicProcess");
-        // Check if the process instance exists using the isExists method
-
+    public StartEvent createStartEvent(String initiator, String formKey, boolean sameDeployment, boolean isInterrupting, String validateFormFields, ArrayList<FormProperty> formProperties) {
+        StartEvent startEvent = new StartEvent();
+        startEvent.setInitiator(initiator);
+        startEvent.setFormKey(formKey);
+        startEvent.setSameDeployment(sameDeployment);
+        startEvent.setInterrupting(isInterrupting);
+        startEvent.setValidateFormFields(validateFormFields);
+        startEvent.setFormProperties(formProperties);
+        return startEvent;
     }
 
+
+    public EndEvent createEndEvent(String id, String name, String formKey, boolean sameDeployment, boolean isInterrupting, String validateFormFields, ArrayList<FormProperty> formProperties) {
+        EndEvent event = new EndEvent();
+        if (StringUtils.isBlank(id)) {
+            event.setId("endEvent");
+        } else {
+            event.setId(id);
+        }
+        if (StringUtils.isBlank(name)) {
+            event.setName("End Event");
+        } else {
+            event.setName(name);
+        }
+        return event;
+    }
+
+    public void add(List<SourceTargetDTO> sequenceFlows, String source, String target) {
+        SourceTargetDTO element = SourceTargetDTO.add(source, target);
+        sequenceFlows.add(element);
+    }
+
+    public void setSequenceFlows(Process process, List<SourceTargetDTO> sequenceFlows) {
+        // check list
+
+        // setup SequenceFlow list
+        for (SourceTargetDTO sequenceFlow : sequenceFlows) {
+            SequenceFlow flow = new SequenceFlow();
+            flow.setSourceRef(sequenceFlow.getSourceRef());
+            flow.setTargetRef(sequenceFlow.getTargetRef());
+//            flow.setConditionExpression("${isExists('testIdentifier')}");
+            process.addFlowElement(flow);
+        }
+    }
+
+    public ServiceTask createServiceTask(String implementationType, String implementationValue) {
+        ServiceTask serviceTask = new ServiceTask();
+        serviceTask.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_EXPRESSION);
+        serviceTask.setImplementation("${" + implementationValue + "}");
+        serviceTask.setName("Service Task");
+        serviceTask.setId("Service Task1");
+        serviceTask.setFieldExtensions(Lists.newArrayList());
+        return serviceTask;
+    }
 }
