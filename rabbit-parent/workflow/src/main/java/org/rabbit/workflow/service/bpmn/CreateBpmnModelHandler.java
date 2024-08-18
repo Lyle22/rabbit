@@ -36,7 +36,7 @@ public class CreateBpmnModelHandler {
         StartEvent startEvent = createStartEvent("nine", null, false, true, null, null);
         process.addFlowElement(startEvent);
 
-        ServiceTask serviceTask = createServiceTask(ImplementationType.IMPLEMENTATION_TYPE_CLASS, "workflowUserService");
+        ServiceTask serviceTask = createServiceTask(ImplementationType.IMPLEMENTATION_TYPE_DELEGATEEXPRESSION, "uploadFileDelegate");
         process.addFlowElement(serviceTask);
 
         EndEvent endEvent = createEndEvent("end", "End Event", null, false, true, null, null);
@@ -100,10 +100,10 @@ public class CreateBpmnModelHandler {
 
     public static ServiceTask createServiceTask(String implementationType, String implementationValue) {
         ServiceTask serviceTask = new ServiceTask();
-        serviceTask.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_EXPRESSION);
+        serviceTask.setImplementationType(implementationType);
         serviceTask.setImplementation("${" + implementationValue + "}");
         serviceTask.setName("Service Task");
-        serviceTask.setId("Service Task1");
+        serviceTask.setId("serviceTask1");
         serviceTask.setFieldExtensions(Lists.newArrayList());
         return serviceTask;
     }
