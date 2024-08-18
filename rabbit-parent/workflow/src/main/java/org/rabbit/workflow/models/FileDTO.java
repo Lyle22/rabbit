@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 /**
  * The type File dto.
+ *
+ * @author Lyle
  */
 @Data
 @Schema(description = "Document File")
@@ -15,11 +17,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FileDTO {
+
     @Schema(description = "File Size")
     private long size;
 
     @Schema(description = "File Content")
     private byte[] content;
+
+    @Schema(description = "zip file InputStream")
+    private java.io.InputStream InputStream;
 
     @Schema(description = "Filename")
     private String name;

@@ -1,20 +1,19 @@
 package org.rabbit.tools;
 
-import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.metadata.TableInfo;
-import com.baomidou.mybatisplus.core.toolkit.StringPool;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The class of generate code
+ *
+ * @author Lyle
+ */
 public class GenerateCode {
 
     /**
@@ -26,7 +25,6 @@ public class GenerateCode {
         Scanner scanner = new Scanner(System.in);
         StringBuilder help = new StringBuilder();
         help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
         if (scanner.hasNext()) {
             String ipt = scanner.next();
             if (StringUtils.isNotEmpty(ipt)) {

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * create bpmn model handler
+ *
  * @author nine rabbit
  **/
 @Slf4j
@@ -31,13 +33,13 @@ public class CreateBpmnModelHandler {
         List<SourceTargetDTO> sequenceFlows = Lists.newArrayList();
         BpmnModel model = new BpmnModel();
         Process process = new Process();
-        StartEvent startEvent = new StartEvent();
+        StartEvent startEvent = createStartEvent("nine", null, false, true, null, null);
         process.addFlowElement(startEvent);
 
-        ServiceTask serviceTask = createServiceTask(ImplementationType.IMPLEMENTATION_TYPE_CLASS, "checkExistence");
+        ServiceTask serviceTask = createServiceTask(ImplementationType.IMPLEMENTATION_TYPE_CLASS, "workflowUserService");
         process.addFlowElement(serviceTask);
 
-        EndEvent endEvent = new EndEvent();
+        EndEvent endEvent = createEndEvent("end", "End Event", null, false, true, null, null);
         process.addFlowElement(endEvent);
 
         sequenceFlows.add(SourceTargetDTO.add(startEvent.getId(), serviceTask.getId()));
@@ -50,9 +52,10 @@ public class CreateBpmnModelHandler {
         return model;
     }
 
-
-    public StartEvent createStartEvent(String initiator, String formKey, boolean sameDeployment, boolean isInterrupting, String validateFormFields, ArrayList<FormProperty> formProperties) {
+    public static StartEvent createStartEvent(String initiator, String formKey, boolean sameDeployment, boolean isInterrupting, String validateFormFields, ArrayList<FormProperty> formProperties) {
         StartEvent startEvent = new StartEvent();
+        startEvent.setId("start");
+        startEvent.setName("start event");
         startEvent.setInitiator(initiator);
         startEvent.setFormKey(formKey);
         startEvent.setSameDeployment(sameDeployment);
@@ -62,8 +65,7 @@ public class CreateBpmnModelHandler {
         return startEvent;
     }
 
-
-    public EndEvent createEndEvent(String id, String name, String formKey, boolean sameDeployment, boolean isInterrupting, String validateFormFields, ArrayList<FormProperty> formProperties) {
+    public static EndEvent createEndEvent(String id, String name, String formKey, boolean sameDeployment, boolean isInterrupting, String validateFormFields, ArrayList<FormProperty> formProperties) {
         EndEvent event = new EndEvent();
         if (StringUtils.isBlank(id)) {
             event.setId("endEvent");
@@ -83,7 +85,7 @@ public class CreateBpmnModelHandler {
         sequenceFlows.add(element);
     }
 
-    public void setSequenceFlows(Process process, List<SourceTargetDTO> sequenceFlows) {
+    public static void setSequenceFlows(Process process, List<SourceTargetDTO> sequenceFlows) {
         // check list
 
         // setup SequenceFlow list
@@ -96,7 +98,7 @@ public class CreateBpmnModelHandler {
         }
     }
 
-    public ServiceTask createServiceTask(String implementationType, String implementationValue) {
+    public static ServiceTask createServiceTask(String implementationType, String implementationValue) {
         ServiceTask serviceTask = new ServiceTask();
         serviceTask.setImplementationType(ImplementationType.IMPLEMENTATION_TYPE_EXPRESSION);
         serviceTask.setImplementation("${" + implementationValue + "}");
@@ -105,4 +107,6 @@ public class CreateBpmnModelHandler {
         serviceTask.setFieldExtensions(Lists.newArrayList());
         return serviceTask;
     }
+
+
 }

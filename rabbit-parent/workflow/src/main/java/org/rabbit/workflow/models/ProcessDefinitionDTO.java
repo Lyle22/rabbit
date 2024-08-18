@@ -9,6 +9,7 @@ import org.flowable.engine.repository.ProcessDefinition;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -65,30 +66,16 @@ public class ProcessDefinitionDTO implements Serializable {
      **/
     private String description;
 
-//    private boolean hasStartFormKey ;
-//
-//    /**
-//     * Does this process definition has a graphical notation defined (such that a diagram can be generated)?
-//     */
-//    private boolean hasGraphicalNotation ;
-//
-//    /** Returns true if the process definition is in suspended state. */
-//    private boolean isSuspended ;
-//
-//    /** The tenant identifier of this process definition */
-//    private String getTenantId ;
-//
-//    /** The derived from process definition value when this is a dynamic process definition */
-//    private String getDerivedFrom ;
-//
-//    /** The root derived from process definition value when this is a dynamic process definition */
-//    private String getDerivedFromRoot ;
-//
-//    /** The derived version of the process definition */
-//    private int getDerivedVersion ;
-//
-//    /** The engine version for this process definition (5 or 6) */
-//    private String getEngineVersion ;
+    /**
+     * name="ITSales" accesstype="view"
+     * name="members" accesstype="start"
+     */
+    List<Map<String, String>> permissions;
+
+    /**
+     * Folder Cabinet Data Mapping
+     */
+    List<Map<String, String>> fcDataMapping;
 
     List<UserTaskDTO> userTasks = new ArrayList<>();
 

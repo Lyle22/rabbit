@@ -1,16 +1,15 @@
 package org.rabbit.core.template;
 
-import com.wclsolution.docpal.api.dbmodel.docpal.DocumentTemplate;
-import com.wclsolution.docpal.api.exception.DocPalCustomException;
-import com.wclsolution.docpal.api.security.ErrorCode;
-import com.wclsolution.docpal.api.services.docpal.DocumentTemplateService;
-import com.wclsolution.docpal.api.utils.nuxeo.NuxeoUtils;
-import com.wclsolution.docpal.api.viewmodels.request.GenerateDocumentRequestDTO;
-import com.wclsolution.docpal.api.viewmodels.response.DocumentDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.nuxeo.client.NuxeoClient;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.rabbit.common.exception.DocPalCustomException;
+import org.rabbit.common.exception.ErrorCode;
+import org.rabbit.core.core.NuxeoUtils;
+import org.rabbit.core.models.DocumentDTO;
+import org.rabbit.core.models.GenerateDocumentRequestDTO;
+import org.rabbit.entity.template.DocumentTemplate;
+import org.rabbit.service.template.impl.DocumentTemplateService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -29,13 +28,13 @@ public class GenerateDocumentService {
 
     private GenerateDocumentMode generateMode;
 
-    @Autowired
-    private DocumentTemplateService documentTemplateService;
+    private final DocumentTemplateService documentTemplateService;
+
+    public GenerateDocumentService(DocumentTemplateService documentTemplateService) {
+        this.documentTemplateService = documentTemplateService;
+    }
 
     public GenerateDocumentMode choose(GenerateDocumentRequestDTO requestDTO) {
-        if (StringUtils.isNotBlank(requestDTO.getFolderCabinetId())) {
-            return new FolderCabinetGenerateDocumentMode();
-        }
         if (StringUtils.isNotBlank(requestDTO.getParentPath())) {
             return new DefaultGenerateDocumentMode();
         }

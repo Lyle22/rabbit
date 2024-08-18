@@ -57,7 +57,7 @@ public class GlobalExceptionHandler extends MyControllerAdvice {
     @ExceptionHandler({WorkflowException.class})
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public final @ResponseBody
-    Result<Object> handleDocPalCustomException(WorkflowException exception) {
+    Result<Object> handleWorkflowException(WorkflowException exception) {
         return Result.error(exception.getErrorMessage());
     }
 }

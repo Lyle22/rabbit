@@ -5,6 +5,7 @@ import org.rabbit.common.exception.ErrorCode;
 
 /**
  * The type of custom exception.
+ *
  * @author Lyle
  */
 @Data
@@ -38,5 +39,9 @@ public class WorkflowException extends RuntimeException {
         this.errorMessage = errorMessage;
     }
 
-    // getters and setters
+    public WorkflowException(String errorMessage) {
+        this.errorCode = ErrorCode.WORKFLOW;
+        this.errorMessage = errorMessage;
+    }
+
 }

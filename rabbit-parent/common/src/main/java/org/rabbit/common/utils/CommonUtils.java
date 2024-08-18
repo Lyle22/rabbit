@@ -1,7 +1,12 @@
 package org.rabbit.common.utils;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.cglib.beans.BeanMap;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -23,7 +28,6 @@ public class CommonUtils {
         }
         return PATTERN_UUID.matcher(uuid).matches();
     }
-
 
     public static Boolean isAlpha(String s) {
         if (StringUtils.isBlank(s)) {
@@ -82,6 +86,14 @@ public class CommonUtils {
         return m.find();
     }
 
+    public static File toFile(MultipartFile multipartFile) throws IOException {
+        String fileName = multipartFile.getOriginalFilename();
+        String tmpFilePath = System.getProperty("java.io.tmpdir") + HttpPath.PATH_DELIMITER + System.currentTimeMillis() + fileName;
+        File tmpFile = new File(tmpFilePath);
+        FileUtils.writeByteArrayToFile(tmpFile, multipartFile.getBytes());
+        return tmpFile;
+    }
+
     /**
      * 以某一个字符来分割，讲字符串转换成驼峰命名方式
      *
@@ -123,4 +135,17 @@ public class CommonUtils {
         }
         return max;
     }
+
+    public static <T> T mapToBean(Map<String, Object> map, Class<T> beanClass) {
+        T bean = null;
+        try {
+            bean = beanClass.newInstance();
+        } catch (InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        BeanMap beanMap = BeanMap.create(bean);
+        beanMap.putAll(map);
+        return bean;
+    }
+
 }

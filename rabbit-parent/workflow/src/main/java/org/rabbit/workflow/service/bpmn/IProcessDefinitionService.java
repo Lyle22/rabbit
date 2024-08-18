@@ -30,19 +30,24 @@ public interface IProcessDefinitionService {
      * [通过上传的XML文件来创建流程定义]
      *
      * @param multipartFile the multipart-file
+     * @return ProcessDefinitionDTO the process definition
      */
-    ProcessDefinition create(MultipartFile multipartFile) throws IOException;
+    ProcessDefinitionDTO create(MultipartFile multipartFile) throws IOException;
 
+    /**
+     * 预解析bpmn xml文件
+     * @param multipartFile the multipart-file
+     * @return boolean indicating
+     */
     boolean preParseBpmnXml(MultipartFile multipartFile) throws IOException;
 
     /**
      * Obtain process definition detail.
      *
      * @param processKey the key of process definition
-     * @return the process definitions
+     * @return ProcessDefinitionDTO the process definition
      */
     ProcessDefinitionDTO findByKey(String processKey);
-
 
     /**
      * Obtain process definition detail.

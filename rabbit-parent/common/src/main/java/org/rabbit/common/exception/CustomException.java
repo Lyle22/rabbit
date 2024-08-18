@@ -16,12 +16,10 @@ public class CustomException extends RuntimeException {
 
     /**
      * Instantiates a new custom exception.
+     *  @param errorMessage       the error message
      *
-     * @param errorCode          the error code
-     * @param errorMessage       the error message
-     * @param stackTraceElements the stack trace elements
      */
-    public CustomException(ErrorCode errorCode, String errorMessage, StackTraceElement[] stackTraceElements) {
+    public CustomException(String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
         this.stackTraceElements = stackTraceElements;

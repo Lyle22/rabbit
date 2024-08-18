@@ -1,14 +1,12 @@
 package org.rabbit.core.template;
 
-import com.wclsolution.docpal.api.constants.nuxeo.HttpPath;
-import com.wclsolution.docpal.api.dbmodel.docpal.DocumentTemplate;
-import com.wclsolution.docpal.api.utils.CommonUtils;
-import com.wclsolution.docpal.api.utils.nuxeo.NuxeoUtils;
-import com.wclsolution.docpal.api.viewmodels.response.DocumentDTO;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.nuxeo.client.NuxeoClient;
+import org.rabbit.common.utils.HttpPath;
+import org.rabbit.core.models.DocumentDTO;
+import org.rabbit.entity.template.DocumentTemplate;
 import org.springframework.util.Assert;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,8 +15,14 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.UUID;
 
+/**
+ * @author Lyle
+ */
 public abstract class AbstractGenerateDocument {
 
+    /**
+     * the source of data
+     */
     protected abstract String source();
 
     protected GenerateDocumentMode mode;
@@ -39,9 +43,6 @@ public abstract class AbstractGenerateDocument {
         Assert.state(null != template, "Document Template must be not null");
         Assert.notNull(parentDocumentPath, "Parent Document Path must be not null");
         Assert.notNull(docPalType, "document type cannot be null");
-        if (null == client) {
-            client = NuxeoUtils.getNuxeoClient();
-        }
         final String tempDirectoryPath = System.getProperty("java.io.tmpdir") + HttpPath.PATH_DELIMITER + UUID.randomUUID();
         // Get replace value in file content
         Map<String, Object> templateVariables = getTemplateVariables(template, variables);
@@ -56,7 +57,7 @@ public abstract class AbstractGenerateDocument {
 
             // generate document and then upload it
             Map<String, Object> originVariables = templateVariables;
-            String documentPath = CommonUtils.appendCharacters(parentDocumentPath, HttpPath.PATH_DELIMITER) + name + "." + extension;
+            String documentPath = parentDocumentPath + "/" + name + "." + extension;
             DocumentDTO document = uploadDocument(multipartFile, documentPath, variables, docPalType, client);
             // set up document access control permissions
 

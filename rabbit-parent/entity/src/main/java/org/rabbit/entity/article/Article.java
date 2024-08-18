@@ -7,15 +7,20 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Tolerate;
 
+/**
+ * Article class
+ *
+ * @author Lyle
+ */
 @Data
 @Builder(toBuilder = true)
 @EqualsAndHashCode(callSuper = false)
-public class Article extends BaseEntity{
-	
-	private String title;
+public class Article extends BaseEntity {
 
-	@Tolerate
-	public Article() {
-		super();
-	}
+    private String title;
+
+    @Tolerate
+    public Article() {
+        super();
+    }
 }
