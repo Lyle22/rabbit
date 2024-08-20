@@ -4,6 +4,11 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * NUXEO properties
+ *
+ * @author ninerabbit
+ */
 @Data
 @Configuration
 public class NuxeoProperties {
@@ -26,7 +31,7 @@ public class NuxeoProperties {
     @Value("${spring.ldap.enabled:false}")
     private Boolean isLdap;
 
-    @Value("${wclsolution.support.user:Administrators}")
+    @Value("${support.user:Administrators}")
     private String supportUser;
 
     @Value("${nuxeo.app.url:http://localhost:8080}")
