@@ -3,7 +3,7 @@ package org.rabbit.core.template;
 /**
  * Generate document mode
  *
- * @author Lyle
+ * @author nine rabbit
  */
 public interface GenerateDocumentMode {
 

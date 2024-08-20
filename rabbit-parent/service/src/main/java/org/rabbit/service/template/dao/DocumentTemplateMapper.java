@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.rabbit.entity.template.DocumentTemplate;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @Mapper
 public interface DocumentTemplateMapper extends BaseMapper<DocumentTemplate> {

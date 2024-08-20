@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 public abstract class AbstractGenerateDocument {
 

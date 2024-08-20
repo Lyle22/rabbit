@@ -17,7 +17,7 @@ import java.util.Enumeration;
 import java.util.Map;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @Slf4j
 @Service
@@ -41,7 +41,7 @@ public class UploadFileService implements IFunctionFacade {
 //        NuxeoClient client = AuthenticationUtils.getNuxeoClient();
 //        Document parentDoc = nuxeoUtils.fetchDocumentByPath(client, parentDocPath);
 //        if (parentDoc == null) {
-//            throw new DocPalCustomException(ErrorCode.WORKFLOW, "Parent document does not exist.");
+//            throw new ClientCustomException(ErrorCode.WORKFLOW, "Parent document does not exist.");
 //        }
 //        boolean replaceName = StringUtils.isBlank(documentName);
 //        ContentService contentService = ContentEngines.getDefaultContentEngine().getContentService();
@@ -64,7 +64,7 @@ public class UploadFileService implements IFunctionFacade {
 //                e.printStackTrace();
 //            }
 //            if (parts.isEmpty()) {
-//                throw new DocPalCustomException(ErrorCode.WORKFLOW, "Failed to read file content for create document");
+//                throw new ClientCustomException(ErrorCode.WORKFLOW, "Failed to read file content for create document");
 //            }
 //            // 2. Build document fields of request parameters
 //            String idOrPath = String.format("%s/%s", parentDocPath, uniqueDocName);
@@ -84,7 +84,7 @@ public class UploadFileService implements IFunctionFacade {
 //                }
 //            } catch (Exception e) {
 //                log.error(e.getMessage(), e);
-//                throw new DocPalCustomException(ErrorCode.WORKFLOW, "Failed to create document");
+//                throw new ClientCustomException(ErrorCode.WORKFLOW, "Failed to create document");
 //            }
 //        }
     }

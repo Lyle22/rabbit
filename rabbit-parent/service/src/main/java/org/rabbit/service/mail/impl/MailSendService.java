@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
  * The class of mail send service
  * <br/>
  * The entrance for sending email
- * @author Lyle
+ * @author nine rabbit
  */
 @Slf4j
 @Service

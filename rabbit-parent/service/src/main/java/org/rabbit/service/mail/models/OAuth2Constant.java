@@ -3,7 +3,7 @@ package org.rabbit.service.mail.models;
 import lombok.experimental.UtilityClass;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @UtilityClass
 public class OAuth2Constant {

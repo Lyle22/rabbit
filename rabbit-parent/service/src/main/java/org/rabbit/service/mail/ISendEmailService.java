@@ -6,7 +6,7 @@ import org.rabbit.service.mail.models.SendEmailParam;
 
 /**
  * The interface of send email
- * @author Lyle
+ * @author nine rabbit
  */
 public interface ISendEmailService {
 

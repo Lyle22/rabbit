@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.rabbit.entity.system.EmailLog;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @Mapper
 public interface EmailLogMapper extends BaseMapper<EmailLog> {

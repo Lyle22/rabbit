@@ -5,7 +5,7 @@ import org.rabbit.entity.template.DocumentTemplate;
 /**
  * Use parent path and template variables to generate document
  *
- * @author Lyle
+ * @author nine rabbit
  */
 public class DefaultGenerateDocumentMode implements GenerateDocumentMode {
 

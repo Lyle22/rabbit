@@ -5,7 +5,7 @@ import org.rabbit.service.mail.impl.MailSendService;
 /**
  * The class of explain list of supported functions
  *
- * @author Lyle
+ * @author nine rabbit
  */
 public interface FunctionFacadeType {
 

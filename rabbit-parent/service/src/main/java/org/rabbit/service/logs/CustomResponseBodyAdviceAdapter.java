@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @ControllerAdvice
 public class CustomResponseBodyAdviceAdapter implements ResponseBodyAdvice<Object> {

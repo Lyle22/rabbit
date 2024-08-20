@@ -5,7 +5,7 @@ import org.rabbit.entity.system.EmailTemplate;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @Repository
 public interface EmailTemplateMapper extends BaseMapper<EmailTemplate> {

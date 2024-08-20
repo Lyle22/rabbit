@@ -11,7 +11,7 @@ import java.util.Map;
 
 /**
  * The type of generate document request dto.
- * @author Lyle
+ * @author nine rabbit
  */
 @Data
 @Schema(description = "Generate Document (RequestDTO)")

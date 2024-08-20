@@ -10,7 +10,7 @@ import lombok.experimental.Tolerate;
 /**
  * Article class
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @Data
 @Builder(toBuilder = true)

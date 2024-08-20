@@ -13,7 +13,7 @@ import java.util.Set;
 /**
  * 定制流程定義的接口
  *
- * @author lyle
+ * @author nine rabbit
  **/
 public interface IProcessDefinitionService {
 

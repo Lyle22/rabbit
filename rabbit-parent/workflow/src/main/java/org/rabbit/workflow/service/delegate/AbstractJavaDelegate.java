@@ -18,7 +18,7 @@ import java.util.Date;
 /**
  * Abstract java delegate
  *
- * @author Lyle
+ * @author nine rabbit
  */
 public abstract class AbstractJavaDelegate implements JavaDelegate {
 

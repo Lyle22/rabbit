@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @Configuration
 @ConditionalOnProperty(prefix = "spring.mail", name = "host")

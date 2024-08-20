@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * The type of workflow application.
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @SpringBootApplication(proxyBeanMethods = false)
 @Slf4j

@@ -12,7 +12,7 @@ import java.util.Scanner;
 /**
  * The class of generate code
  *
- * @author Lyle
+ * @author nine rabbit
  */
 public class GenerateCode {
 

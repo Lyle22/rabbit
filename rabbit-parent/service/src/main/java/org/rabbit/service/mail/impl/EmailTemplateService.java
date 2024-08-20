@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * The type of email template service
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @Slf4j
 @Service

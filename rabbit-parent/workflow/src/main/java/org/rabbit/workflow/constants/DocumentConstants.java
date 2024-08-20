@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 /**
  * Document constants
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @UtilityClass
 public class DocumentConstants {

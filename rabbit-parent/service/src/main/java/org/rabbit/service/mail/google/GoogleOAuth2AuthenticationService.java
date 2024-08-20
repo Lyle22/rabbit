@@ -23,7 +23,7 @@ import java.util.Optional;
  *
  * <p> Use Google AuthorizationCode Flow to achieve OAuth2.0 Authentication process </p>
  *
- * @author Lyle
+ * @author nine rabbit
  * @see <a href="https://developers.google.com/identity/protocols/oauth2/web-server#offline">Google oauth2 identity</a>
  */
 @Slf4j

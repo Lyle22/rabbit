@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * The type Global exception handler.
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @ControllerAdvice
 @Slf4j

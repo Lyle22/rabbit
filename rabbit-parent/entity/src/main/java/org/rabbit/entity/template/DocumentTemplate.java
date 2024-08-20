@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 import org.rabbit.entity.base.BaseEntity;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @NoArgsConstructor
 @AllArgsConstructor

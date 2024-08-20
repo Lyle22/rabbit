@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Define function facade
  *
- * @author Lyle
+ * @author nine rabbit
  */
 public interface IFunctionFacade extends FunctionFacadeType {
 

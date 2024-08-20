@@ -7,7 +7,7 @@ import org.rabbit.core.models.GenerateDocumentRequestDTO;
 /**
  * The class of generate document service
  *
- * @author Lyle
+ * @author nine rabbit
  */
 public interface IGenerateDocumentService {
 

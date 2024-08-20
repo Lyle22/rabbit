@@ -11,7 +11,7 @@ import java.time.Instant;
 /**
  * 基础类
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @Data
 public class BaseEntity implements Serializable {

@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 /**
  * AbstractDocumentTemplate
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @Slf4j
 public abstract class AbstractDocumentTemplate {
@@ -46,11 +46,11 @@ public abstract class AbstractDocumentTemplate {
 //        Assert.notNull(docPalType, "document type cannot be null");
 //        if (MapUtil.isEmpty(templateVariables)) {
 //            log.error("template variables is empty. {} = {}", documentTemplateId, parentDocumentPath);
-//            throw new DocPalCustomException(ErrorCode.GLOBAL, "Missing parameters");
+//            throw new ClientCustomException(ErrorCode.GLOBAL, "Missing parameters");
 //        }
 //        DocumentTemplate template = getById(documentTemplateId);
 //        if (StringUtils.isBlank(template.getDocumentId())) {
-//            throw new DocPalCustomException(ErrorCode.GLOBAL, "Please upload template file first");
+//            throw new ClientCustomException(ErrorCode.GLOBAL, "Please upload template file first");
 //        }
 //
 //        NuxeoClient client = NuxeoUtils.getNuxeoClient();
@@ -158,7 +158,7 @@ public abstract class AbstractDocumentTemplate {
 //        } catch (IOException ioe) {
 //            ioe.printStackTrace();
 //        }
-//        throw new DocPalCustomException(ErrorCode.GLOBAL, "Failed to replace template variable");
+//        throw new ClientCustomException(ErrorCode.GLOBAL, "Failed to replace template variable");
         return null;
     }
 

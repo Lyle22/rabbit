@@ -6,7 +6,7 @@ import org.springframework.data.redis.core.*;
 
 /**
  * The class that AutoRedis Configration
- * @author Lyle
+ * @author nine rabbit
  */
 @Configuration
 public class AutoRedisConfig {

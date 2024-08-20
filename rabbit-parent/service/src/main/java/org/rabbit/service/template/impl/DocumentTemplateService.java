@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.rabbit.common.exception.CustomException;
-import org.rabbit.common.exception.DocPalCustomException;
+import org.rabbit.common.exception.ClientCustomException;
 import org.rabbit.common.exception.ErrorCode;
 import org.rabbit.entity.template.DocumentTemplate;
 import org.rabbit.entity.template.DocumentTemplateRequestDTO;
@@ -43,10 +43,10 @@ public class DocumentTemplateService extends ServiceImpl<DocumentTemplateMapper,
     private void preCheckArgs(DocumentTemplate documentTemplate) {
         Assert.notNull(documentTemplate.getName(), "Name must be not null");
         if (!FILE_TYPES.contains(documentTemplate.getFileType())) {
-            throw new DocPalCustomException(ErrorCode.GLOBAL, String.format("FileType include of %s", FILE_TYPES));
+            throw new ClientCustomException(ErrorCode.GLOBAL, String.format("FileType include of %s", FILE_TYPES));
         }
 //        if (this.isDuplicateName(documentTemplate.getName(), documentTemplate.getId())) {
-//            throw new DocPalCustomException(ErrorCode.GLOBAL, "The template name already exists");
+//            throw new ClientCustomException(ErrorCode.GLOBAL, "The template name already exists");
 //        }
     }
 

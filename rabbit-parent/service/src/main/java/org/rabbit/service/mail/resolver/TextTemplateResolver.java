@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * TextTemplateResolver
- * @author Lyle
+ * @author nine rabbit
  */
 @Component
 public class TextTemplateResolver extends StringTemplateResolver {

@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 /**
  * The type of workflow process definition DTO
- * @author Lyle
+ * @author nine rabbit
  */
 @Data
 @Builder

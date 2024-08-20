@@ -3,7 +3,7 @@ package org.rabbit.core.template;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.nuxeo.client.NuxeoClient;
-import org.rabbit.common.exception.DocPalCustomException;
+import org.rabbit.common.exception.ClientCustomException;
 import org.rabbit.common.exception.ErrorCode;
 import org.rabbit.core.core.NuxeoUtils;
 import org.rabbit.core.models.DocumentDTO;
@@ -20,7 +20,7 @@ import java.util.Map;
  * The class of generate document implement service
  * <p>Use templates to generate new documents according to different creation modes</p>
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @Slf4j
 @Service
@@ -39,7 +39,7 @@ public class GenerateDocumentService {
             return new DefaultGenerateDocumentMode();
         }
         log.error("folder cabinet id or specify parent path cannot be null at the same time");
-        throw new DocPalCustomException(ErrorCode.GLOBAL, "Invalid generate document mode when use document template");
+        throw new ClientCustomException(ErrorCode.GLOBAL, "Invalid generate document mode when use document template");
     }
 
     /**
@@ -60,7 +60,7 @@ public class GenerateDocumentService {
         // 1. First, query document template and checking is exist?
         DocumentTemplate template = documentTemplateService.getById(requestDTO.getTemplateId());
         if (StringUtils.isBlank(template.getDocumentId())) {
-            throw new DocPalCustomException(ErrorCode.GLOBAL, "Please upload template file first, Template Name=" + template.getName());
+            throw new ClientCustomException(ErrorCode.GLOBAL, "Please upload template file first, Template Name=" + template.getName());
         }
         if (requestDTO.getVariables() == null || requestDTO.getVariables().isEmpty()) {
             log.warn("Those variables is null when generate document file. Document Template ID is {}", requestDTO.getTemplateId());

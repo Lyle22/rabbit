@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.nuxeo.client.NuxeoClient;
 import org.nuxeo.client.objects.Document;
-import org.rabbit.common.exception.DocPalCustomException;
+import org.rabbit.common.exception.ClientCustomException;
 import org.rabbit.common.exception.ErrorCode;
 import org.rabbit.common.utils.HttpPath;
 import org.rabbit.core.core.NuxeoUtils;
@@ -35,7 +35,7 @@ import java.util.Map;
  * The class of default implement service for generate document
  * <p>Use templates to generate new documents according to different creation modes</p>
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @Slf4j
 @Service
@@ -87,7 +87,7 @@ public class DefaultGenerateDocumentService extends AbstractGenerateDocument imp
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        throw new DocPalCustomException(ErrorCode.GLOBAL, "template document does not exist");
+        throw new ClientCustomException(ErrorCode.GLOBAL, "template document does not exist");
     }
 
     @Override
@@ -104,7 +104,7 @@ public class DefaultGenerateDocumentService extends AbstractGenerateDocument imp
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        throw new DocPalCustomException(ErrorCode.GLOBAL, "Failed to replace template variable");
+        throw new ClientCustomException(ErrorCode.GLOBAL, "Failed to replace template variable");
     }
 
     @Override
@@ -133,7 +133,7 @@ public class DefaultGenerateDocumentService extends AbstractGenerateDocument imp
             e.printStackTrace();
             log.error("Upload document was not successful, documentPath={}", documentPath);
         }
-        throw new DocPalCustomException(ErrorCode.GLOBAL, "Upload document was not successful");
+        throw new ClientCustomException(ErrorCode.GLOBAL, "Upload document was not successful");
     }
 
 }

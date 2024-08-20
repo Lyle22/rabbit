@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 /**
  * Flowable constants
  *
- * @author Lyle
+ * @author nine rabbit
  */
 @UtilityClass
 public class FlowableConstants {

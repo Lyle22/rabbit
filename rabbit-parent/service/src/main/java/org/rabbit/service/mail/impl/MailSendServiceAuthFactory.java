@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 
 /**
  * the class of mail service factory
- * @author Lyle
+ * @author nine rabbit
  */
 @Slf4j
 @Service

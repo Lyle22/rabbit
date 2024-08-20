@@ -8,7 +8,7 @@ import org.rabbit.service.user.dao.UserMapper;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @Slf4j
 @Service

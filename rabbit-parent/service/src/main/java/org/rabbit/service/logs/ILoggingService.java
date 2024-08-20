@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 public interface ILoggingService {
 

@@ -5,7 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Sort;
 
 /**
- * @author Lyle
+ * @author nine rabbit
  */
 @Data
 public class BasePageRequest {
