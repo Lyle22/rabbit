@@ -108,8 +108,8 @@ public class DefaultGenerateDocumentService extends AbstractGenerateDocument imp
     }
 
     @Override
-    protected DocumentDTO uploadDocument(MultipartFile multipartFile, String documentPath, Map<String, Object> properties, String docPalType, NuxeoClient client) {
-//        List<String> metadata = docPalTypeService.find(docPalType).getMetadata().stream().map(DocPalTypeMetadata::getMetadata).collect(Collectors.toList());
+    protected DocumentDTO uploadDocument(MultipartFile multipartFile, String documentPath, Map<String, Object> properties, String documentType, NuxeoClient client) {
+//        List<String> metadata = documentTypeService.find(documentType).getMetadata().stream().map(documentTypeMetadata::getMetadata).collect(Collectors.toList());
 //        properties.keySet().removeIf(key -> !metadata.contains(key));
         try {
             // 检查文档是否存在, 如果存在则覆盖
@@ -117,7 +117,7 @@ public class DefaultGenerateDocumentService extends AbstractGenerateDocument imp
             if (null == nuxeoUtils.fetchDocument(client, documentPath)) {
                 List<MultipartFile> files = new ArrayList<>();
                 files.add(multipartFile);
-//                return documentService.createDocument(documentPath, documentName, docPalType, properties, new ArrayList<>(), files, client, null);
+//                return documentService.createDocument(documentPath, documentName, documentType, properties, new ArrayList<>(), files, client, null);
             } else {
                 // Override file content
                 DocumentRequestDTO updateRequest = new DocumentRequestDTO();

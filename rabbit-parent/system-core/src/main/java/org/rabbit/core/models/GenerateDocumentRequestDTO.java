@@ -24,7 +24,7 @@ public class GenerateDocumentRequestDTO {
     @Schema(description = "FolderCabinet ID")
     private String folderCabinetId;
 
-    @Schema(description = "Nuxeo Parent Document Path")
+    @Schema(description = "Parent Document Path")
     private String parentPath;
 
     @Schema(description = "Document Name")

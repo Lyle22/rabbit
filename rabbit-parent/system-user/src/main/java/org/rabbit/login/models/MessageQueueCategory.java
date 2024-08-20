@@ -3,7 +3,7 @@ package org.rabbit.login.models;
 /**
  * The message category of message queue
  *
- * @author nine
+ * @author nine rabbit
  */
 public class MessageQueueCategory {
 

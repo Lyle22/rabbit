@@ -19,7 +19,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * Nuxeo Utilities
+ * Utilities
  */
 @Slf4j
 @Component
@@ -61,9 +61,9 @@ public class NuxeoUtils {
     private NuxeoProperties nuxeoProperties;
 
     /**
-     * Gets nuxeo client. Used for public endpoints or scheduler jobs.
+     * Gets client. Used for public endpoints or scheduler jobs.
      *
-     * @return the nuxeo client
+     * @return the client
      */
     public static NuxeoClient getNuxeoClient() {
         return new NuxeoClient.Builder()
@@ -128,9 +128,9 @@ public class NuxeoUtils {
     }
 
     /**
-     * Get Nuxeo repository with all enrichers
+     * Get repository with all enrichers
      *
-     * @param client the Nuxeo client
+     * @param client the client
      * @return the repository
      */
     public Repository repository(@NonNull NuxeoClient client) {
@@ -157,7 +157,7 @@ public class NuxeoUtils {
      * <p>If idOrPath then endow uuid of ducument root </p>
      *
      * @param idOrPath path or uuid of ducument
-     * @param client   nuxeo client
+     * @param client   client
      * @return UUID
      */
     public String getUUID(String idOrPath, NuxeoClient client) {
@@ -213,7 +213,7 @@ public class NuxeoUtils {
     /**
      * Get document.
      *
-     * @param client   the Nuxeo client
+     * @param client   the client
      * @param idOrPath the document id or path
      * @return the document
      */

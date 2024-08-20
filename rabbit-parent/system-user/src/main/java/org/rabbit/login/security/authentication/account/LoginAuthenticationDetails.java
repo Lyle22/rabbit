@@ -7,7 +7,7 @@ import java.time.Instant;
 /**
  * The authentication details.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 public class LoginAuthenticationDetails {

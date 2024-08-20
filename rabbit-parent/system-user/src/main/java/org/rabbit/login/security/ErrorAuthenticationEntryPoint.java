@@ -17,7 +17,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 /**
  * The type of error authentication EntryPoint
  *
- * @author nine
+ * @author nine rabbit
  */
 @Component
 public class ErrorAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {

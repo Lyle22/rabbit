@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 /**
  * the type of out link server authentication provider
  *
- * @author nine
+ * @author nine rabbit
  */
 @Component
 @Slf4j

@@ -2,7 +2,7 @@ package org.rabbit.common.contains;
 
 public class RedisConstants {
 
-    public static final String CACHE_DOCPAL_SESSION_KEY = "cache:docPalSession:";
+    public static final String CACHE_SESSION_KEY = "cache:Session:";
 
     /**
      * Combination Session Key
@@ -12,7 +12,7 @@ public class RedisConstants {
      * @return String the session key of this user
      */
     public static String combinationSessionKey(String userId, String authenticationSessionId) {
-        return String.format("%s%s:%s", CACHE_DOCPAL_SESSION_KEY, userId, authenticationSessionId);
+        return String.format("%s%s:%s", CACHE_SESSION_KEY, userId, authenticationSessionId);
     }
 
 }

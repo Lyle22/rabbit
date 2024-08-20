@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 /**
  * The type Skip path request matcher.
  *
- * @author nine
+ * @author nine rabbit
  */
 public class SkipPathRequestMatcher implements RequestMatcher {
     private final OrRequestMatcher matchers;

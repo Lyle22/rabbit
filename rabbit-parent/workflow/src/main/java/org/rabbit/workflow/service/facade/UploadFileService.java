@@ -159,7 +159,7 @@ public class UploadFileService implements IFunctionFacade {
         String properties = reqParam.get(FlowableConstants.PROPERTIES);
         if (StringUtils.isNotBlank(properties)) {
             Map<String, Object> propertiesMap = new Gson().fromJson(properties, Map.class);
-//            String verifyResult = docPalTypeService.verifyMetadata(reqParam.get(DOCUMENT_TYPE), new ArrayList<>(propertiesMap.keySet()));
+//            String verifyResult = documentTypeService.verifyMetadata(reqParam.get(DOCUMENT_TYPE), new ArrayList<>(propertiesMap.keySet()));
 //            if (StringUtils.isNotBlank(verifyResult)) {
 //                return Result.error(verifyResult);
 //            }

@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * The type Jwt authorization failure handler.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Component
 public class JwtAuthorizationFailureHandler implements AuthenticationFailureHandler {

@@ -39,7 +39,7 @@ public class GenerateCode {
      */
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/nine?useSSL=true&useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8";
-        String username = "docpal";
+        String username = "rabbit";
         String password = "password";
         String projectPath = System.getProperty("user.dir");
 

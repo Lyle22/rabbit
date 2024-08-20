@@ -11,7 +11,7 @@ import java.util.Map;
  */
 @Validated
 @Configuration
-@ConfigurationProperties(prefix = "docpal.case-type.permission")
+@ConfigurationProperties(prefix = "case-type.permission")
 public class CaseTypePermissionRule {
 
     private Map<String, Integer> rules;

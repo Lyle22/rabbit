@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * message queue properties
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 public class MQProperties {

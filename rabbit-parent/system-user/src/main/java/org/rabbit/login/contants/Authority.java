@@ -3,7 +3,7 @@ package org.rabbit.login.contants;
 /**
  * Authority
  *
- * @author nine
+ * @author nine rabbit
  */
 public class Authority {
 

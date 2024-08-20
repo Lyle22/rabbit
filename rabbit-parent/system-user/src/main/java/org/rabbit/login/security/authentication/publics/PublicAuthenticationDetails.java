@@ -7,7 +7,7 @@ import java.time.Instant;
 /**
  * The type public authentication details.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 public class PublicAuthenticationDetails {

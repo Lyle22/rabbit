@@ -12,7 +12,7 @@ import javax.validation.ConstraintValidatorContext;
 /**
  * PasswordConstraintValidator
  *
- * @author nine
+ * @author nine rabbit
  */
 public class PasswordConstraintValidator implements ConstraintValidator<ValidPassword, String> {
 

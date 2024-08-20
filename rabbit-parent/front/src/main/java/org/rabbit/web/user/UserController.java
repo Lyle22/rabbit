@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * User controller
  *
  * @since 1.0.0
- * @author nine
+ * @author nine rabbit
  */
 @RestController
 @RequestMapping("user")

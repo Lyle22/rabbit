@@ -24,13 +24,16 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
+ * Document Template Service
+ *
  * @author nine rabbit
  **/
 @Slf4j
 @Service
 public class DocumentTemplateService extends ServiceImpl<DocumentTemplateMapper, DocumentTemplate> {
 
-    private static final Set<String> FILE_TYPES = Stream.of("Word", "Excel", "PPT").collect(Collectors.toSet());
+    public static final Set<String> FILE_TYPES = Stream.of("Word", "Excel", "PPT").collect(Collectors.toSet());
+
     /**
      * Default setting root path of all template documents
      */
@@ -41,7 +44,7 @@ public class DocumentTemplateService extends ServiceImpl<DocumentTemplateMapper,
     private ILoginUserService userService;
 
     private void preCheckArgs(DocumentTemplate documentTemplate) {
-        Assert.notNull(documentTemplate.getName(), "Name must be not null");
+        Assert.notNull(documentTemplate.getName(), "name must be not null");
         if (!FILE_TYPES.contains(documentTemplate.getFileType())) {
             throw new ClientCustomException(ErrorCode.GLOBAL, String.format("FileType include of %s", FILE_TYPES));
         }

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @author nine
+ * @author nine rabbit
  */
 @Slf4j
 public class OutLinkAuthenticationFilter extends AbstractAuthenticationProcessingFilter {

@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * The type Custom authentication failure handler.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Component
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {

@@ -5,7 +5,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 /**
  * The type public authentication token.
  *
- * @author nine
+ * @author nine rabbit
  */
 public class PublicAuthenticationToken extends UsernamePasswordAuthenticationToken {
 

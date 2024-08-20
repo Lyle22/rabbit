@@ -37,12 +37,12 @@ public abstract class AbstractGenerateDocument {
 
     protected abstract MultipartFile replaceVariable(File templateFile, String fileName, Map<String, Object> templateVariables, String tempDirectoryPath, String fileExtension);
 
-    protected abstract DocumentDTO uploadDocument(MultipartFile multipartFile, String documentPath, Map<String, Object> properties, String docPalType, NuxeoClient client);
+    protected abstract DocumentDTO uploadDocument(MultipartFile multipartFile, String documentPath, Map<String, Object> properties, String documentType, NuxeoClient client);
 
-    public DocumentDTO generate(NuxeoClient client, DocumentTemplate template, Map<String, Object> variables, String parentDocumentPath, String docPalType, String documentName) {
+    public DocumentDTO generate(NuxeoClient client, DocumentTemplate template, Map<String, Object> variables, String parentDocumentPath, String documentType, String documentName) {
         Assert.state(null != template, "Document Template must be not null");
         Assert.notNull(parentDocumentPath, "Parent Document Path must be not null");
-        Assert.notNull(docPalType, "document type cannot be null");
+        Assert.notNull(documentType, "document type cannot be null");
         final String tempDirectoryPath = System.getProperty("java.io.tmpdir") + HttpPath.PATH_DELIMITER + UUID.randomUUID();
         // Get replace value in file content
         Map<String, Object> templateVariables = getTemplateVariables(template, variables);
@@ -58,7 +58,7 @@ public abstract class AbstractGenerateDocument {
             // generate document and then upload it
             Map<String, Object> originVariables = templateVariables;
             String documentPath = parentDocumentPath + "/" + name + "." + extension;
-            DocumentDTO document = uploadDocument(multipartFile, documentPath, variables, docPalType, client);
+            DocumentDTO document = uploadDocument(multipartFile, documentPath, variables, documentType, client);
             // set up document access control permissions
 
             return document;

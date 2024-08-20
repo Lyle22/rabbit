@@ -25,7 +25,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 /**
  * The type Login2fa authentication filter.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Slf4j
 public class Login2faAuthenticationFilter extends AbstractAuthenticationProcessingFilter {

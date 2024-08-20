@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * The type Email Exception
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 public class EmailException extends RuntimeException {

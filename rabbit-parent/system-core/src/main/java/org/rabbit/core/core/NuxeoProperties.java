@@ -17,13 +17,13 @@ public class NuxeoProperties {
     @Value("${jwt.refresh.expiration.minutes:120}")
     private int jwtRefreshExpiresInMinutes;
 
-    @Value("${docpal.security.jwt.expiration.2fa.minutes:120}")
+    @Value("${security.jwt.expiration.2fa.minutes:120}")
     private int jwt2FAExpiresInMinutes;
 
-    @Value("${docpal.security.api.2fa.enable:true}")
+    @Value("${security.api.2fa.enable:true}")
     private boolean isRequired2FA;
 
-    @Value("${docpal.spring.ldap.enabled:false}")
+    @Value("${spring.ldap.enabled:false}")
     private Boolean isLdap;
 
     @Value("${wclsolution.support.user:Administrators}")

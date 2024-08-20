@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * All constants.
  *
- * @author nine
+ * @author nine rabbit
  */
 public class Constants {
 

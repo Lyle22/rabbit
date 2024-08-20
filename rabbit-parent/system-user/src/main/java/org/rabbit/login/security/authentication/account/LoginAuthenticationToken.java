@@ -8,7 +8,7 @@ import java.util.Collection;
 /**
  * The type authentication token.
  *
- * @author nine
+ * @author nine rabbit
  */
 public class LoginAuthenticationToken extends UsernamePasswordAuthenticationToken {
 

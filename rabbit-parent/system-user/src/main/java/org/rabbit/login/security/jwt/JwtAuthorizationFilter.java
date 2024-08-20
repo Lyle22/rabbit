@@ -22,7 +22,7 @@ import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 /**
  * The type Jwt authorization filter.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Slf4j
 public class JwtAuthorizationFilter extends AbstractAuthenticationProcessingFilter {

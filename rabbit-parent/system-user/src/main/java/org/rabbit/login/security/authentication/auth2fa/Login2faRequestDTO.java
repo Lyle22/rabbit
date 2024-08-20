@@ -7,7 +7,7 @@ import lombok.Data;
 /**
  * The type Login request.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 public class Login2faRequestDTO {

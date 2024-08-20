@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 /**
  * the type of cache authentication store service
  *
- * @author nine
+ * @author nine rabbit
  */
 @Service
 @Slf4j

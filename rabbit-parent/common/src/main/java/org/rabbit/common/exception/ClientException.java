@@ -5,7 +5,7 @@ import org.rabbit.common.contains.ResponseEnum;
 /**
  * the type of ClientException
  *
- * @author nine
+ * @author nine rabbit
  */
 public class ClientException extends RuntimeException {
 

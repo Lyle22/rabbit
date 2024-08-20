@@ -8,7 +8,7 @@ import java.util.Collection;
 /**
  * Login2fa auth token
  *
- * @author nine
+ * @author nine rabbit
  */
 public class Login2faAuthenticationToken extends UsernamePasswordAuthenticationToken {
 

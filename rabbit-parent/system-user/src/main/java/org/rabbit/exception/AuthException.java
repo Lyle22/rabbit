@@ -6,7 +6,7 @@ import org.rabbit.common.exception.ErrorCode;
 /**
  * The type Auth exception.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 public class AuthException extends RuntimeException {

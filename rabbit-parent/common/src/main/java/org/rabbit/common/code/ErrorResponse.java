@@ -1,4 +1,4 @@
-package org.rabbit.common.code;//package com.wclsolution.docpal.api.security;
+package org.rabbit.common.code;//package com.wclsolution.api.security;
 //
 //import org.jetbrains.annotations.Contract;
 //import org.jetbrains.annotations.NotNull;

@@ -40,10 +40,10 @@ public abstract class AbstractDocumentTemplate {
 
     // protected abstract Document findParentDocument(Map<String, Object> variables, Object value);
 
-    protected DocumentDTO generate(String documentTemplateId, Map<String, Object> templateVariables, String parentDocumentPath, String docPalType, String documentName) throws IOException {
+    protected DocumentDTO generate(String documentTemplateId, Map<String, Object> templateVariables, String parentDocumentPath, String documentType, String documentName) throws IOException {
 //        Assert.notNull(documentTemplateId, "Document Template ID must be not null");
 //        Assert.notNull(parentDocumentPath, "Parent Document Path must be not null");
-//        Assert.notNull(docPalType, "document type cannot be null");
+//        Assert.notNull(documentType, "document type cannot be null");
 //        if (MapUtil.isEmpty(templateVariables)) {
 //            log.error("template variables is empty. {} = {}", documentTemplateId, parentDocumentPath);
 //            throw new ClientCustomException(ErrorCode.GLOBAL, "Missing parameters");
@@ -66,12 +66,12 @@ public abstract class AbstractDocumentTemplate {
 //            List<String> languages = new ArrayList<>();
 //            // 3. generate file content for document content
 //            MultipartFile multipartFile = replaceVariable(templateFile, name, templateVariables, tempDirectoryPath, extension);
-//            List<String> metadata = docPalTypeService.find(docPalType).getMetadata().stream().map(DocPalTypeMetadata::getMetadata).collect(Collectors.toList());
+//            List<String> metadata = documentTypeService.find(documentType).getMetadata().stream().map(documentTypeMetadata::getMetadata).collect(Collectors.toList());
 //            originVariables.keySet().removeIf(key -> !metadata.contains(key));
 //            if (null == nuxeoUtils.fetchDocument(client, documentPath)) {
 //                // 4. Do generate document (Check if the document exists, and if it exists then overwrite?)
 //                List<MultipartFile> files = List.of(multipartFile);
-//                return documentService.createDocument(documentPath, name, docPalType, originVariables, languages, files, client, null);
+//                return documentService.createDocument(documentPath, name, documentType, originVariables, languages, files, client, null);
 //            } else {
 //                // 4. Override file content
 //                DocumentRequestDTO updateRequest = new DocumentRequestDTO();
@@ -93,12 +93,12 @@ public abstract class AbstractDocumentTemplate {
     }
 
     private DocumentDTO doGenerateDocument(
-            String documentName, String documentPath, String docpalType, Map<String, Object> properties, List<String> languages, MultipartFile multipartFile
+            String documentName, String documentPath, String documentType, Map<String, Object> properties, List<String> languages, MultipartFile multipartFile
     ) throws Exception {
 //        // 检查文档是否存在, 如果存在则覆盖
 //        if (null == nuxeoUtils.fetchDocument(client, documentPath)) {
 //            List<MultipartFile> files = List.of(multipartFile);
-//            return documentService.createDocument(documentPath, documentName, docpalType, properties, languages, files, client, null);
+//            return documentService.createDocument(documentPath, documentName, documentType, properties, languages, files, client, null);
 //        } else {
 //            // Override file content
 //            DocumentRequestDTO updateRequest = new DocumentRequestDTO();

@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * the type of login auth store
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 @Builder

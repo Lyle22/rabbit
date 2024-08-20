@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 /**
  * message queue request
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 @Builder

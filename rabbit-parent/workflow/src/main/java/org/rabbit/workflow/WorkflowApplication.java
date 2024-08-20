@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author nine rabbit
  */
-@SpringBootApplication(proxyBeanMethods = false)
 @Slf4j
+@SpringBootApplication(proxyBeanMethods = false)
 @MapperScan({"org.rabbit.service.*.dao","org.rabbit.service.*.mapper"})
 public class WorkflowApplication {
 

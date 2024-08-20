@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Swagger configuration
  *
- * @author nine
+ * @author nine rabbit
  */
 @Configuration
 public class SwaggerConfig {

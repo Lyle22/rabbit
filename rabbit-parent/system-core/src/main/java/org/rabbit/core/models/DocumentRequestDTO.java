@@ -53,7 +53,7 @@ public class DocumentRequestDTO {
     @Schema(description = "FolderCabinet Template Id")
     private String templateId;
 
-    private String oldDocPalType;
+    private String olddocumentType;
 
     public String getPageNumber() {
         if (pageNumber == null) {

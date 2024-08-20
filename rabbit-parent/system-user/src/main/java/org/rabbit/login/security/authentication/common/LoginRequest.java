@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * The type Login request.
  *
- * @author nine
+ * @author nine rabbit
  */
 public class LoginRequest {
 

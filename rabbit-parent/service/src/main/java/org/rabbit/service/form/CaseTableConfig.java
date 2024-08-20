@@ -13,29 +13,24 @@ import org.springframework.context.annotation.Configuration;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * CaseTableConfig
+ *
+ * @author nine rabbit
+ */
 @Configuration
-@ConfigurationProperties(prefix = "docpal.case-type")
+@ConfigurationProperties(prefix = "case-type")
 public class CaseTableConfig {
 
     private static final Logger logger = LoggerFactory.getLogger(CaseTableConfig.class);
-    public static final String TABLE_NAME_PREFIX = "ct_";
+    public static final String TABLE_NAME_PREFIX = "case_";
     public static final String CASE_ID = "case_id";
 
-    /**
-     * Case Table column mapping list, you can customize config it for override.
-     * <p>
-     * For example:
-     * docpal.caseType.column-mapping[0].value=varchar:64
-     * docpal.caseType.column-mapping[0].label=Document
-     * docpal.caseType.column-mapping[0].unique=false
-     * docpal.caseType.column-mapping[0].key=document
-     */
     private List<MTFieldTypeMapping> columnMapping;
 
     public List<MTFieldTypeMapping> getColumnMapping() {
         if (columnMapping == null || CollectionUtils.isEmpty(columnMapping)) {
             columnMapping = new ArrayList<>();
-            // initialize column mapping
             columnMapping.addAll(AbstractJooqService.getFieldTypeMapping());
             columnMapping.add(new MTFieldTypeMapping("varchar:64", "Document", false, "document"));
             columnMapping.add(new MTFieldTypeMapping("varchar:255", "Master Table", false, "master_table"));

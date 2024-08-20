@@ -60,14 +60,14 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
             String username = decodedJWT.getSubject();
             Date expiredAt = decodedJWT.getExpiresAt();
 
-            String docPalSessionId = decodedJWT.getClaim(Authority.SESSION_ID_KEY).asString();
+            String SessionId = decodedJWT.getClaim(Authority.SESSION_ID_KEY).asString();
             String[] roles = decodedJWT.getClaim("roles").asArray(String.class);
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
             stream(roles).forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
 
             // Get Session ID from redis
             User user = userService.getById(decodedJWT.getSubject());
-            LoginAuthenticationStore authenticationStore = loginAuthenticationStoreService.getSession(docPalSessionId, user.getId());
+            LoginAuthenticationStore authenticationStore = loginAuthenticationStoreService.getSession(SessionId, user.getId());
 
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null, authorities);
             LoginAuthenticationDetails loginAuthenticationDetails = new LoginAuthenticationDetails();

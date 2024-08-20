@@ -14,7 +14,7 @@ import java.util.Base64;
 /**
  * The type Custom basic auth interceptor.
  *
- * @author nine
+ * @author nine rabbit
  */
 public class CustomBasicAuthInterceptor implements Interceptor {
     /**

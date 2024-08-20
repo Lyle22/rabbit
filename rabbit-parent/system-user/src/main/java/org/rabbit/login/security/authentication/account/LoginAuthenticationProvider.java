@@ -19,7 +19,7 @@ import static org.rabbit.SystemAuthConfiguration.ROLE_USER;
 /**
  * the type Login Authentication Provider
  *
- * @author nine
+ * @author nine rabbit
  */
 @Slf4j
 @Component

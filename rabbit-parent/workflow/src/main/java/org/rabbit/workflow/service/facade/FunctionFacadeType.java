@@ -1,6 +1,6 @@
 package org.rabbit.workflow.service.facade;
 
-import org.rabbit.service.mail.impl.MailSendService;
+import org.rabbit.service.email.SendEmailService;
 
 /**
  * The class of explain list of supported functions
@@ -13,6 +13,6 @@ public interface FunctionFacadeType {
 
     String WORKFLOW_FORM_SERVICE = WorkflowFormService.class.getSimpleName().toLowerCase();
 
-    String MAIL_SEND_SERVICE = MailSendService.class.getSimpleName().toLowerCase();
+    String MAIL_SEND_SERVICE = SendEmailService.class.getSimpleName().toLowerCase();
 
 }

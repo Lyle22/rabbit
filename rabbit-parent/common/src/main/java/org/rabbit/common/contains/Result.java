@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * the type of global result
  *
- * @author ninerabbit
+ * @author nine rabbitrabbit
  */
 @Data
 public class Result<T> implements Serializable {

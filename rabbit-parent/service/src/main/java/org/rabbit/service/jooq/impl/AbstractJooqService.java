@@ -28,25 +28,25 @@ import java.util.stream.Collectors;
  */
 public interface AbstractJooqService {
 
-    public static final String TABLE_NAME_PREFIX = "mt_";
+    String TABLE_NAME_PREFIX = "mt_";
 
-    public static final String ID = "id";
-    public static final String MODIFIED_DATE = "modified_date";
-    public static final String CREATED_DATE = "created_date";
-    public static final String MODIFIED_BY = "modified_by";
-    public static final String CREATED_BY = "created_by";
-    public static final String STATUS = "status";
-    public static final String BUSINESS_NO = "biz_no";
-    public static final String BUSINESS_TYPE = "biz_type";
-    public static final String COLUMN_NAME = "column_name";
-    public static final String COLUMN_VALUE = "column_value";
-    public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    public static final String PERCENT_SIGN = "%";
-    public static final String FIELD_TYPE_RELATION = "relation";
-    public static final List<String> FIXED_FIELDS = List.of(ID, MODIFIED_DATE, CREATED_DATE, CREATED_BY, MODIFIED_BY, STATUS);
+    String ID = "id";
+    String STATUS = "status";
+    String CREATED_BY = "created_by";
+    String CREATED_DATE = "create_date";
+    String MODIFIED_BY = "updated_by";
+    String MODIFIED_DATE = "updated_date";
+    String BUSINESS_NO = "biz_no";
+    String BUSINESS_TYPE = "biz_type";
+    String COLUMN_NAME = "column_name";
+    String COLUMN_VALUE = "column_value";
+    String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    String PERCENT_SIGN = "%";
+    String FIELD_TYPE_RELATION = "relation";
 
-    // 唯一索引的列的数据类型通常是数值、文本或日期, CREATE UNIQUE INDEX index_name ON table_name(column_name);
-    public static final List<MTFieldTypeMapping> FIELD_TYPE_MAPPINGS = Arrays.asList(
+    List<String> FIXED_FIELDS = List.of(ID, MODIFIED_DATE, CREATED_DATE, CREATED_BY, MODIFIED_BY, STATUS);
+
+    List<MTFieldTypeMapping> FIELD_TYPE_MAPPINGS = Arrays.asList(
         new MTFieldTypeMapping("bigint", "Number", true, "number"),
         new MTFieldTypeMapping("varchar:255", "ShortText", true, "short_text"),
         new MTFieldTypeMapping("varchar:4000", "String", false, "string"),

@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * The authentication provider with 2FA support
  *
- * @author nine
+ * @author nine rabbit
  */
 @Component
 @Slf4j

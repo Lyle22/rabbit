@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@RequestMapping("${API_VERSION}/docpal/form/design")
+@RequestMapping("${API_VERSION}/form/design")
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class FormDesignController {
 

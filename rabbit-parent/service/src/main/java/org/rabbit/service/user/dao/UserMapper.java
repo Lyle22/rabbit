@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.rabbit.entity.user.User;
 
 /**
- * @author nine
+ * @author nine rabbit
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {

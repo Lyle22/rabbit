@@ -19,7 +19,7 @@ public class GlobalProperties {
     public static final String BULK_DOCUMENTS_UPLOAD = "bulkDocumentsUpload";
     public static final String ADHOC_APPROVAL = "adhocApproval";
 
-    // nuxeo root path
+    // root path
     public static final String ROOTPATH = "/SAM/workspaces";
 
 

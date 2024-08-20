@@ -25,7 +25,7 @@ import java.util.Date;
 /**
  * The type public authentication provider.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Component
 @Slf4j

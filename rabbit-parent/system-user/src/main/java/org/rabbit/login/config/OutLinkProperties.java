@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * the type of outlink properties
  *
- * @author nine
+ * @author nine rabbit
  */
 @Data
 @NoArgsConstructor

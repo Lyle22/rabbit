@@ -37,7 +37,7 @@ import static org.springframework.util.MimeTypeUtils.APPLICATION_JSON_VALUE;
 /**
  * The type Custom authentication success handler.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Component
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
@@ -107,7 +107,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         final String username = (String) authentication.getPrincipal();
         final String loginSessionId = authenticationDetails.getLoginSessionId();
         final Collection<? extends GrantedAuthority> authorityList = authentication.getAuthorities();
-        final String docPalAuthenticationSessionId = UUID.randomUUID().toString();
+        final String AuthenticationSessionId = UUID.randomUUID().toString();
         Algorithm algorithm = Algorithm.HMAC256(authConfigs.getJwtSecret().getBytes());
 
         Date jwtExpiredAt = getJwtExpiresAt().getTime();
@@ -116,21 +116,21 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .withExpiresAt(jwtExpiredAt)
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("roles", authorityList.stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                .withClaim(Authority.SESSION_ID_KEY, docPalAuthenticationSessionId)
+                .withClaim(Authority.SESSION_ID_KEY, AuthenticationSessionId)
                 .sign(algorithm);
         Date jwtRefreshExpiresAt = getJwtRefreshExpiresAt().getTime();
         String refresh_token = JWT.create()
                 .withSubject(username)
                 .withExpiresAt(jwtRefreshExpiresAt)
                 .withIssuer(request.getRequestURL().toString())
-                .withClaim(Authority.SESSION_ID_KEY, docPalAuthenticationSessionId)
+                .withClaim(Authority.SESSION_ID_KEY, AuthenticationSessionId)
                 .sign(algorithm);
 
         // Write corresponding information to redis for token refresh purpose
         User user = userService.getById(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
-                        .loginSessionId(docPalAuthenticationSessionId)
+                        .loginSessionId(AuthenticationSessionId)
                         .authSessionId(loginSessionId)
                         .enabled(true)
                         .expiredDate(jwtRefreshExpiresAt)
@@ -155,7 +155,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         }
         final String username = (String) authentication.getPrincipal();
         final LoginAuthenticationDetails loginAuthenticationDetails = (LoginAuthenticationDetails) authenticationDetails;
-        final String docPalAuthenticationSessionId = UUID.randomUUID().toString();
+        final String AuthenticationSessionId = UUID.randomUUID().toString();
         final Date jwtExpiredAt = this.get2FAJwtExpiresAt().getTime();
 
         Algorithm algorithm = Algorithm.HMAC256(authConfigs.getJwtSecret().getBytes());
@@ -163,7 +163,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .withSubject(username)
                 .withExpiresAt(jwtExpiredAt)
                 .withIssuer(request.getRequestURL().toString())
-                .withClaim(Authority.SESSION_ID_KEY, docPalAuthenticationSessionId)
+                .withClaim(Authority.SESSION_ID_KEY, AuthenticationSessionId)
                 .sign(algorithm);
         final String email = loginAuthenticationDetails.getUserEmail();
         if (email == null || email.isBlank() || email.isEmpty() || !email.contains("@")) {
@@ -178,7 +178,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         User user = userService.getById(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
-                        .loginSessionId(docPalAuthenticationSessionId)
+                        .loginSessionId(AuthenticationSessionId)
                         .authSessionId(((LoginAuthenticationDetails) authentication.getDetails()).getLoginSessionId())
                         .enabled(true)
                         .expiredDate(jwtExpiredAt)
@@ -200,7 +200,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     // Handle Login Success without 2FA
     private void handleSuccessAndGenerateJWT(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         String username = (String) authentication.getPrincipal();
-        final String docPalAuthenticationSessionId = UUID.randomUUID().toString();
+        final String AuthenticationSessionId = UUID.randomUUID().toString();
 
         Algorithm algorithm = Algorithm.HMAC256(authConfigs.getJwtSecret().getBytes());
         String access_token;
@@ -219,7 +219,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .withExpiresAt(jwtExpiredAt)
                 .withIssuer(request.getRequestURL().toString())
                 .withClaim("roles", authentication.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                .withClaim(Authority.SESSION_ID_KEY, docPalAuthenticationSessionId)
+                .withClaim(Authority.SESSION_ID_KEY, AuthenticationSessionId)
                 .sign(algorithm);
 
         Date jwtRefreshExpiresAt = getJwtRefreshExpiresAt().getTime();
@@ -227,13 +227,13 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
                 .withSubject(username)
                 .withExpiresAt(jwtRefreshExpiresAt)
                 .withIssuer(request.getRequestURL().toString())
-                .withClaim(Authority.SESSION_ID_KEY, docPalAuthenticationSessionId)
+                .withClaim(Authority.SESSION_ID_KEY, AuthenticationSessionId)
                 .sign(algorithm);
 
         User user = userService.getById(username);
         loginAuthenticationStoreService.storeSession
                 (LoginAuthenticationStore.builder()
-                        .loginSessionId(docPalAuthenticationSessionId)
+                        .loginSessionId(AuthenticationSessionId)
                         .authSessionId(loginSessionId)
                         .enabled(true)
                         .expiredDate(jwtExpiredAt)

@@ -3,7 +3,7 @@ package org.rabbit.common.base;
 /**
  * The base class of return result
  *
- * @author nine
+ * @author nine rabbit
  * @since 2019-12-20
  */
 public interface BaseResult {

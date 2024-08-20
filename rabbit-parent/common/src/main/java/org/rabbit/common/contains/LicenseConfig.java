@@ -3,7 +3,7 @@ package org.rabbit.common.contains;
 /**
  * License Configs
  *
- * @author nine
+ * @author nine rabbit
  */
 public class LicenseConfig {
 

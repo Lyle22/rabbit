@@ -1,7 +1,7 @@
 package org.rabbit.common.contains;
 
 /**
- * @author nine
+ * @author nine rabbit
  */
 
 public enum ResponseEnum implements ResultCode {

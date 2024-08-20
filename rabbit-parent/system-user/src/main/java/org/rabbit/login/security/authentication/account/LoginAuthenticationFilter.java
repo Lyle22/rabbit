@@ -22,7 +22,7 @@ import java.io.IOException;
 /**
  * The type authentication filter.
  *
- * @author nine
+ * @author nine rabbit
  */
 @Slf4j
 public class LoginAuthenticationFilter extends AbstractAuthenticationProcessingFilter {

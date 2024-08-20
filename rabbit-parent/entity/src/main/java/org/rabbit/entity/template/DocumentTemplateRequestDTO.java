@@ -29,7 +29,7 @@ public class DocumentTemplateRequestDTO extends BasePageRequest {
     @Schema(description = "Document Template Name")
     String name;
 
-    @Schema(description = "Nuxeo Document Id")
+    @Schema(description = "Document Id")
     String documentId;
 
     @Schema(description = "Document Template File Type")
