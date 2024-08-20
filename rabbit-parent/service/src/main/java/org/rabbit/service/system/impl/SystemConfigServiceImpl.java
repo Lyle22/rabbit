@@ -18,30 +18,24 @@ import java.util.List;
 @Service
 public class SystemConfigServiceImpl extends ServiceImpl<SystemConfigMapper, SystemConfig> implements ISystemConfigService {
 
-    private final SystemConfigMapper dao;
-
-    public SystemConfigServiceImpl(SystemConfigMapper dao) {
-        this.dao = dao;
-    }
-
     @Override
     public List<SystemConfig> findById(String id) {
-        return dao.findById(id);
+        return baseMapper.findById(id);
     }
 
     @Override
     public List<SystemConfig> findBySystemId(String id) {
-        return dao.findBySystemId(id);
+        return baseMapper.findBySystemId(id);
     }
 
     @Override
     public List<SystemConfig> findBySystemType(String systemIdType) {
-        return dao.findBySystemType(systemIdType);
+        return baseMapper.findBySystemType(systemIdType);
     }
 
     @Override
     public List<SystemConfig> findBySystemTypeAndSystemId(String systemIdType, String systemId) {
-        return dao.findBySystemTypeAndSystemId(systemIdType, systemId);
+        return baseMapper.findBySystemTypeAndSystemId(systemIdType, systemId);
     }
 
     @Override

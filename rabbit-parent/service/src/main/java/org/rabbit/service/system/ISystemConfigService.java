@@ -5,7 +5,7 @@ import org.rabbit.entity.system.SystemConfig;
 import java.util.List;
 
 /**
- * The interface System setting repository.
+ * The interface of system configuration.
  *
  * @author nine rabbit
  */
