@@ -10,12 +10,11 @@ import lombok.experimental.Accessors;
 /**
  * @author nine rabbit
  */
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Builder(toBuilder = true)
-@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@EqualsAndHashCode(callSuper = false)
 @TableName("form_design_draft")
 public class FormDesignDraft {
 

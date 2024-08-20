@@ -12,12 +12,11 @@ import org.rabbit.entity.base.BaseEntity;
  * @author nine rabbit
  */
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Builder(toBuilder = true)
-@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@EqualsAndHashCode(callSuper = false)
 @TableName("form_design")
 public class FormDesign extends BaseEntity {
 

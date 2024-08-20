@@ -14,12 +14,11 @@ import org.rabbit.entity.base.BaseEntity;
  * @author nine
  * @since 2024-07-14
  */
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
-@Builder(toBuilder = true)
-@EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
+@EqualsAndHashCode(callSuper = false)
 @TableName("cmmn_case_table")
 public class CaseTable extends BaseEntity {
 
