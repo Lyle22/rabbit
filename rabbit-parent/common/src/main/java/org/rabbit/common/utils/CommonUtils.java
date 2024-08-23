@@ -79,6 +79,13 @@ public class CommonUtils {
         return matcher.replaceAll("").trim().replaceAll(" ", "_");
     }
 
+    public static String removeSpecialChar(String str) {
+        String regEx = "[`!@#$%^&*()+=|{}':;',//[//].<>/?！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(str);
+        return matcher.replaceAll("").trim().replaceAll(" ", "");
+    }
+
     public static boolean checkSpecialChar(String str) {
         String regEx = "[^\\w\\d\\s]";
         Pattern p = Pattern.compile(regEx);

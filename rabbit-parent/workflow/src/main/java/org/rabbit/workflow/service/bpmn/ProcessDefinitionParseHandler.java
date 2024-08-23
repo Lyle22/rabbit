@@ -19,13 +19,11 @@ import java.util.*;
  * @author nine rabbit
  */
 @UtilityClass
-public class ProcessDefinitionParser {
+public class ProcessDefinitionParseHandler {
 
     /**
      * <extensionElements>
      * <flowable:permissions>
-     * <field name="members" accesstype="view"></field>
-     * <field name="ITSales" accesstype="view"></field>
      * <field name="members" accesstype="start"></field>
      * </flowable:permissions>
      * </extensionElements>

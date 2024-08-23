@@ -1,6 +1,5 @@
 package org.rabbit.workflow.service.facade;
 
-import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.rabbit.common.contains.Result;
@@ -141,11 +140,6 @@ public class UploadFileService implements IFunctionFacade {
         // 校验必填参数是否存在?
         if (StringUtils.isBlank(reqParam.get(PARENT_PATH))) {
             return Result.error("missing parent path");
-        } else {
-//            Document document = nuxeoUtils.fetchDocument(AuthenticationUtils.getNuxeoAdminClient(), reqParam.get(PARENT_PATH));
-//            if (null == document) {
-//                return Result.error("parent document does not exist");
-//            }
         }
         if (StringUtils.isBlank(reqParam.get(DOCUMENT_NAME))) {
             return Result.error("missing document name");
@@ -158,11 +152,7 @@ public class UploadFileService implements IFunctionFacade {
         }
         String properties = reqParam.get(FlowableConstants.PROPERTIES);
         if (StringUtils.isNotBlank(properties)) {
-            Map<String, Object> propertiesMap = new Gson().fromJson(properties, Map.class);
-//            String verifyResult = documentTypeService.verifyMetadata(reqParam.get(DOCUMENT_TYPE), new ArrayList<>(propertiesMap.keySet()));
-//            if (StringUtils.isNotBlank(verifyResult)) {
-//                return Result.error(verifyResult);
-//            }
+            //Map<String, Object> propertiesMap = new Gson().fromJson(properties, Map.class);
         }
         return Result.ok(Boolean.TRUE.toString());
     }

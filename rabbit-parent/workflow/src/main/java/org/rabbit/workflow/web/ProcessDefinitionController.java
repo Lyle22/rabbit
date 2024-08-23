@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.rabbit.common.base.PaginationDTO;
 import org.rabbit.common.contains.Result;
-import org.rabbit.workflow.models.BpmnDynamicFormDTO;
-import org.rabbit.workflow.models.FormPropertyDTO;
-import org.rabbit.workflow.models.ProcessDefinitionDTO;
-import org.rabbit.workflow.models.ProcessDefinitionRequestDTO;
+import org.rabbit.workflow.models.*;
 import org.rabbit.workflow.service.ResponseUtils;
 import org.rabbit.workflow.service.bpmn.CreateProcessDefinitionService;
 import org.rabbit.workflow.service.bpmn.FlowableAppService;
@@ -23,14 +20,16 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * Process Definition APIs
+ *
  * @author nine rabbit
  */
 @Slf4j
 @RestController
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 @RequestMapping("${API_VERSION}/processes")
-@Tag(name = "Workflow Process Definition", description = "Workflow Process Definition Controller")
-public class WorkflowProcessController {
+@Tag(name = "Process Definition", description = "Process Definition Controller")
+public class ProcessDefinitionController {
 
     private final ResponseUtils responseUtils;
     private final FlowableAppService flowableAppService;
@@ -51,6 +50,14 @@ public class WorkflowProcessController {
     @PostMapping(value = "/upload")
     public Result<ProcessDefinitionDTO> create(MultipartFile file) throws IOException {
         return Result.ok(processDefinitionService.create(file));
+    }
+
+    /**
+     * Create blank process definition - created by uploading BPMN.xml
+     */
+    @PostMapping(value = "/create/blank")
+    public Result<ProcessDefinitionDTO> createBlank(@RequestBody CreateProcessDefinitionDTO requestDTO) {
+        return Result.ok(createProcessDefinitionService.createBlankProcessDefinition(requestDTO));
     }
 
     /**

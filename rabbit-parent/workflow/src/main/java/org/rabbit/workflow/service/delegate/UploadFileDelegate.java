@@ -8,14 +8,13 @@ import org.jetbrains.annotations.NotNull;
 import org.rabbit.common.utils.JsonHelper;
 import org.rabbit.workflow.constants.DocumentConstants;
 import org.rabbit.workflow.service.facade.UploadFileService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * upload file delegate
+ * Upload File Delegate
  *
  * @author nine rabbit
  */
@@ -29,7 +28,11 @@ public class UploadFileDelegate extends AbstractJavaDelegate {
     private Expression properties;
     private Expression contentId;
 
-    @Autowired private UploadFileService uploadFileService;
+    private final UploadFileService uploadFileService;
+
+    public UploadFileDelegate(UploadFileService uploadFileService) {
+        this.uploadFileService = uploadFileService;
+    }
 
     @Override
     public void execute(@NotNull DelegateExecution execution) {

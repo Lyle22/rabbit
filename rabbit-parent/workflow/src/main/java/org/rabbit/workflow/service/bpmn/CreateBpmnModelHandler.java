@@ -2,7 +2,6 @@ package org.rabbit.workflow.service.bpmn;
 
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.flowable.bpmn.model.Process;
 import org.flowable.bpmn.model.*;
 import org.flowable.engine.ProcessEngine;
@@ -39,7 +38,7 @@ public class CreateBpmnModelHandler {
         ServiceTask serviceTask = createServiceTask(ImplementationType.IMPLEMENTATION_TYPE_DELEGATEEXPRESSION, "uploadFileDelegate");
         process.addFlowElement(serviceTask);
 
-        EndEvent endEvent = createEndEvent("end", "End Event", null, false, true, null, null);
+        EndEvent endEvent = createEndEvent();
         process.addFlowElement(endEvent);
 
         sequenceFlows.add(SourceTargetDTO.add(startEvent.getId(), serviceTask.getId()));
@@ -65,18 +64,10 @@ public class CreateBpmnModelHandler {
         return startEvent;
     }
 
-    public static EndEvent createEndEvent(String id, String name, String formKey, boolean sameDeployment, boolean isInterrupting, String validateFormFields, ArrayList<FormProperty> formProperties) {
+    public static EndEvent createEndEvent() {
         EndEvent event = new EndEvent();
-        if (StringUtils.isBlank(id)) {
-            event.setId("endEvent");
-        } else {
-            event.setId(id);
-        }
-        if (StringUtils.isBlank(name)) {
-            event.setName("End Event");
-        } else {
-            event.setName(name);
-        }
+        event.setId("end");
+        event.setName("End Event");
         return event;
     }
 
@@ -109,4 +100,10 @@ public class CreateBpmnModelHandler {
     }
 
 
+    public static void addFieldExtension(List<FieldExtension> list, String fieldName, String expression) {
+        FieldExtension fieldExtension = new FieldExtension();
+        fieldExtension.setFieldName(fieldName);
+        fieldExtension.setExpression(expression);
+        list.add(fieldExtension);
+    }
 }

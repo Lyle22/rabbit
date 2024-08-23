@@ -3,6 +3,7 @@ package org.rabbit.workflow.models;
 import lombok.*;
 
 /**
+ *
  * @author nine rabbit
  **/
 @Data
@@ -12,9 +13,9 @@ import lombok.*;
 @ToString(callSuper = true)
 public class CreateProcessDefinitionDTO {
 
-    private String name;
-
     private String key;
+
+    private String name;
 
     private String initiator;
 

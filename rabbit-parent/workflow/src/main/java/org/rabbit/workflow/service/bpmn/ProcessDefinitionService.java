@@ -149,7 +149,7 @@ public class ProcessDefinitionService implements IProcessDefinitionService {
         ProcessDefinitionDTO processDefinitionDTO = new ProcessDefinitionDTO(processDefinition);
         // Parse permission
         BpmnModel model = getBpmnModel(processDefinition.getKey(), processDefinition.getId());
-        List<Map<String, String>> permissions = ProcessDefinitionParser.extractPermissions(model);
+        List<Map<String, String>> permissions = ProcessDefinitionParseHandler.extractPermissions(model);
         processDefinitionDTO.setPermissions(permissions);
         return processDefinitionDTO;
     }
@@ -317,9 +317,9 @@ public class ProcessDefinitionService implements IProcessDefinitionService {
         // Parse permissions
         RepositoryService repositoryService = processEngine.getRepositoryService();
         BpmnModel model = repositoryService.getBpmnModel(processDefinition.getId());
-        List<Map<String, String>> permissions = ProcessDefinitionParser.extractPermissions(model);
+        List<Map<String, String>> permissions = ProcessDefinitionParseHandler.extractPermissions(model);
         processDefinitionDTO.setPermissions(permissions);
-        List<Map<String, String>> dataMappingMap = ProcessDefinitionParser.extractFolderCabinetDataMapping(model);
+        List<Map<String, String>> dataMappingMap = ProcessDefinitionParseHandler.extractFolderCabinetDataMapping(model);
         processDefinitionDTO.setFcDataMapping(dataMappingMap);
         return processDefinitionDTO;
     }

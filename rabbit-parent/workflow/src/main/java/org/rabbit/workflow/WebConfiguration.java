@@ -8,6 +8,8 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
+ * System Logger Interceptor
+ *
  * @author nine rabbit
  */
 @Configuration
